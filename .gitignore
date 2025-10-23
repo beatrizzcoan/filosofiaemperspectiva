@@ -1,0 +1,14 @@
+# Ignorar dependências
+node_modules/
+
+# Ignorar arquivos de build do Vite
+dist/
+
+# Ignorar logs
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+
+# Ignorar configurações de ambiente
+.env
+.env.local
