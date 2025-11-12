@@ -10,5 +10,5 @@ yarn-debug.log*
 yarn-error.log*
 
 # Ignorar configurações de ambiente
-.env
-.env.local
+# .env
+# .env.local
