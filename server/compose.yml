@@ -1,0 +1,24 @@
+services:
+  postgres:
+    image: postgres:16
+    container_name: filos_postgres
+    restart: always
+    ports:
+      - "5432:5432"
+    environment:
+      POSTGRES_DB: pbe
+      POSTGRES_USER: postgres
+      POSTGRES_PASSWORD: postgres
+    volumes:
+      - postgres_data:/var/lib/postgresql/data
+
+  adminer:
+    image: adminer
+    restart: always
+    ports:
+      - "8888:8080"
+    volumes:
+      - ./adminer-dark.css:/var/www/html/adminer-dark.css
+
+volumes:
+  postgres_data:
