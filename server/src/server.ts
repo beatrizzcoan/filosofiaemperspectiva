@@ -7,7 +7,7 @@ dotenv.config();
 
 const app = express();
 
-const PORT = Number(process.env.PORT || 3000);
+const PORT = Number(process.env.PORT || 8000);
 
 async function start() {
   try {
@@ -22,7 +22,7 @@ async function start() {
 
     app.use("/auth", userRoutes);
 
-    app.listen(PORT, () => {
+    app.listen(PORT, "0.0.0.0", () => {
       console.log(`server is listening on http://localhost:${PORT}`);
     });
   } catch (err) {
