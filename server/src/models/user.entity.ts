@@ -17,11 +17,11 @@ export class User extends Model<InferAttributes<User>, InferCreationAttributes<U
         },
         name: {
           type: DataTypes.STRING(255),
-          unique: true,
           allowNull: false,
         },
         email: {
           type: DataTypes.STRING(255),
+          unique: true,
           allowNull: false,
         },
         password: {

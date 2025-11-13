@@ -54,6 +54,32 @@ export class UserService {
     return jwtToken;
   }
 
+  static async changePassword(userId: number, oldPassword: string, newPassword: string) {
+    const user = await AuthRepository.findById(userId);
+
+    if (!user) {
+      throw new ApiError(404, "Usuário não encontrado");
+    }
+
+    const isOldPasswordValid = await bcrypt.compare(oldPassword, user.password);
+
+    if (!isOldPasswordValid) {
+      throw new ApiError(401, "Senha antiga inválida");
+    }
+
+    if (newPassword.length < 6) {
+      throw new ApiError(400, "Nova senha deve ter pelo menos 6 caracteres");
+    }
+
+    const hashedNewPassword = await bcrypt.hash(newPassword, 10);
+    user.password = hashedNewPassword;
+    await user.save();
+
+    const { password: _, ...userWithoutPassword } = user.toJSON();
+
+    return userWithoutPassword;
+  }
+
   static async getAllUsers() {
     const users = await User.findAll({ order: [["id", "ASC"]] });
     return users;

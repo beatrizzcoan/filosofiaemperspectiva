@@ -42,16 +42,23 @@ export class AuthController {
     }
   }
 
-  static async getUserById(req: Request, res: Response, next: NextFunction) {
+  static async changePassword(req: Request, res: Response, next: NextFunction) {
     try {
-      const { id } = req.params;
-      const user = await UserService.getUserById(Number(id));
-      if (!user) {
-        return res.status(404).json({ message: "user not found" });
+      const { email, oldPassword, newPassword } = req.body;
+
+      if (!oldPassword || !newPassword) {
+        return res.status(400).json({ message: "Senha antiga e nova são obrigatórias" });
       }
-      res.json(user);
-    } catch (err) {
-      next(err);
+
+      await UserService.changePassword(email, oldPassword, newPassword);
+
+      res.json({ message: "Senha alterada com sucesso" });
+    } catch (error) {
+      if (error instanceof ApiError) {
+        return res.status(error.getStatusCode()).json({ message: error.message });
+      }
+
+      next(error);
     }
   }
 }
