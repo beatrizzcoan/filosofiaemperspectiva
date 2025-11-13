@@ -22,12 +22,23 @@ export class AuthController {
     }
   }
 
-  static async getAllUsers(req: Request, res: Response, next: NextFunction) {
+  static async login(req: Request, res: Response, next: NextFunction) {
     try {
-      const users = await UserService.getAllUsers();
-      res.json(users);
-    } catch (err) {
-      next(err);
+      const { email, password } = req.body;
+
+      if (!email || !password) {
+        return res.status(400).json({ message: "Email e senha são obrigatórios" });
+      }
+
+      const token = await UserService.login(email, password);
+
+      res.json({ token });
+    } catch (error) {
+      if (error instanceof ApiError) {
+        return res.status(error.getStatusCode()).json({ message: error.message });
+      }
+
+      next(error);
     }
   }
 

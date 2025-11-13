@@ -8,8 +8,14 @@ dotenv.config();
 const app = express();
 
 const PORT = Number(process.env.PORT || 8000);
+export const JWT_SECRET: string = process.env.JWT_SECRET!;
 
 async function start() {
+  if (!JWT_SECRET) {
+    console.error("JWT_SECRET is not defined in environment variables");
+    process.exit(1);
+  }
+
   try {
     initModels(sequelize);
     app.use(express.json());

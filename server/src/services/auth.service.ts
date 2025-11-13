@@ -2,6 +2,8 @@ import bcrypt from "bcryptjs";
 import { User } from "../models";
 import { ApiError } from "@/common/errors/ApiError";
 import { AuthRepository } from "@/repository/auth.repository";
+import jwt from "jsonwebtoken";
+import { JWT_SECRET } from "@/server";
 
 export class UserService {
   static async createUser(name: string, email: string, password: string) {
@@ -32,6 +34,24 @@ export class UserService {
     const { password: _, ...userWithoutPassword } = user.toJSON();
 
     return userWithoutPassword;
+  }
+
+  static async login(email: string, password: string) {
+    const user = await AuthRepository.findByEmail(email);
+
+    if (!user) {
+      throw new ApiError(401, "Credenciais inválidas");
+    }
+
+    const isPasswordValid = await bcrypt.compare(password, user.password);
+
+    if (!isPasswordValid) {
+      throw new ApiError(401, "Credenciais inválidas");
+    }
+
+    const jwtToken = jwt.sign({ id: user.id, email: user.email, name: user.name }, JWT_SECRET);
+
+    return jwtToken;
   }
 
   static async getAllUsers() {
