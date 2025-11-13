@@ -2,8 +2,9 @@ import { DataTypes, Model, type InferAttributes, type InferCreationAttributes, t
 
 export class User extends Model<InferAttributes<User>, InferCreationAttributes<User>> {
   declare id: CreationOptional<number>;
-  declare name: string | null;
+  declare name: string;
   declare email: string;
+  declare password: string;
 
   static initModel(sequelize: Sequelize) {
     User.init(
@@ -11,26 +12,28 @@ export class User extends Model<InferAttributes<User>, InferCreationAttributes<U
         id: {
           type: DataTypes.BIGINT,
           autoIncrement: true,
+          unique: true,
           primaryKey: true,
         },
         name: {
           type: DataTypes.STRING(255),
-          allowNull: true,
+          unique: true,
+          allowNull: false,
         },
         email: {
           type: DataTypes.STRING(255),
           allowNull: false,
-          unique: true,
-          validate: {
-            isEmail: true,
-          },
+        },
+        password: {
+          type: DataTypes.STRING(255),
+          allowNull: false,
         },
       },
       {
         sequelize,
         tableName: "users",
         modelName: "User",
-        timestamps: false,
+        timestamps: true,
         underscored: false,
       },
     );

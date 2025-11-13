@@ -1,18 +1,22 @@
 import type { Request, Response, NextFunction } from "express";
-import { UserService } from "../services/user.service";
+import { UserService } from "../services/auth.service";
+import { ApiError } from "@/common/errors/ApiError";
 
 export class AuthController {
   static async createUser(req: Request, res: Response, next: NextFunction) {
     try {
-      const { name, email } = req.body;
-      if (!name || !email) {
-        return res.status(400).json({ message: "name and email are required" });
+      const { name, email, password } = req.body;
+
+      if (!name || !email || !password) {
+        return res.status(400).json({ message: "Usuário, email e senha são obrigatórios" });
       }
-      const user = await UserService.createUser({ name, email });
+
+      const user = await UserService.createUser(name, email, password);
+
       res.status(201).json(user);
     } catch (err: any) {
-      if (err?.name === "SequelizeUniqueConstraintError") {
-        return res.status(409).json({ message: "email already in use" });
+      if (err instanceof ApiError) {
+        return res.status(err.getStatusCode()).json({ message: err.message });
       }
       next(err);
     }

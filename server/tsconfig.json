@@ -10,7 +10,7 @@
     "isolatedModules": true,
 
     "strict": true,
-    "verbatimModuleSyntax": true,
+    "verbatimModuleSyntax": false,
     "noUncheckedIndexedAccess": true,
     "strictPropertyInitialization": true,
     "strictNullChecks": true,
