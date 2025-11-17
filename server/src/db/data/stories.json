@@ -1,0 +1,30 @@
+[
+  {
+    "title": "The Forgotten City of Al-Khadir",
+    "tag": "Adventure",
+    "tagColor": "#FF5733",
+    "content": "Deep within the searing desert, a legend speaks of a city of gold, Al-Khadir. An intrepid explorer, armed with a cryptic map, sets out to uncover its secrets, facing sandstorms and ancient guardians along the way.",
+    "imageUrl": "https://example.com/images/al-khadir.png"
+  },
+  {
+    "title": "Cybernetic Serenade",
+    "tag": "Sci-Fi",
+    "tagColor": "#33CFFF",
+    "content": "In a neon-drenched metropolis of 2077, a reclusive android musician discovers a hidden frequency that can rewrite memories. He must protect it from a powerful corporation that wants to use it to control the populace.",
+    "imageUrl": "https://example.com/images/cybernetic.png"
+  },
+  {
+    "title": "The Last Enchantment",
+    "tag": "Fantasy",
+    "tagColor": "#8E44AD",
+    "content": "In a world where magic is fading, a young apprentice is tasked with a perilous journey to the heart of the Whispering Woods. Her mission is to find the last magical seed to restore balance to the kingdom.",
+    "imageUrl": "https://example.com/images/enchantment.png"
+  },
+  {
+    "title": "Echoes of the Deep",
+    "tag": "Mystery",
+    "tagColor": "#2C3E50",
+    "content": "A deep-sea biologist investigating a strange sonar anomaly discovers a submersible that vanished 50 years ago. As she explores the ghost vessel, she realizes she is not alone in the crushing darkness of the abyss.",
+    "imageUrl": "https://example.com/images/deep-sea.png"
+  }
+]

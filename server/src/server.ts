@@ -3,6 +3,8 @@ import { sequelize } from "./db/sequelize";
 import { initModels } from "./models";
 import express from "express";
 import userRoutes from "./routes/auth.routes";
+import { seedDatabase } from "./db/seeder";
+import storyRoutes from "./routes/story.routes";
 dotenv.config();
 
 const app = express();
@@ -26,7 +28,10 @@ async function start() {
     await sequelize.sync({ alter: false });
     console.log("models synchronized");
 
+    await seedDatabase();
+
     app.use("/auth", userRoutes);
+    app.use("/stories", storyRoutes);
 
     app.listen(PORT, "0.0.0.0", () => {
       console.log(`server is listening on http://localhost:${PORT}`);
