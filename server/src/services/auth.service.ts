@@ -87,6 +87,17 @@ export class UserService {
     return userWithoutPassword;
   }
 
+  static async getMe(userId: number) {
+    const user = await AuthRepository.findById(userId);
+
+    if (!user) {
+      throw new ApiError(404, "Usuário não encontrado");
+    }
+
+    const { password: _, ...userWithoutPassword } = user.toJSON();
+    return userWithoutPassword;
+  }
+
   static async getAllUsers() {
     const users = await User.findAll({ order: [["id", "ASC"]] });
     return users;
