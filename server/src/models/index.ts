@@ -3,6 +3,8 @@ import { User } from "./user.entity";
 import { Story } from "./story.entity";
 import { Bookmark } from "./bookmark.entity";
 
+export { User, Story, Bookmark };
+
 export function initModels(sequelize: Sequelize) {
   User.initModel(sequelize);
   Story.initModel(sequelize);
@@ -20,5 +22,3 @@ export function initModels(sequelize: Sequelize) {
     Bookmark,
   };
 }
-
-export default { Story, User, Bookmark };
