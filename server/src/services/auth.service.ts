@@ -49,13 +49,20 @@ export class UserService {
       throw new ApiError(401, "Credenciais inválidas");
     }
 
-    const jwtToken = jwt.sign({ id: user.id, email: user.email, name: user.name }, JWT_SECRET);
+    const jwtToken = jwt.sign(
+      { id: user.id, email: user.email, name: user.name },
+      JWT_SECRET,
+    );
 
     return jwtToken;
   }
 
-  static async changePassword(userId: number, oldPassword: string, newPassword: string) {
-    const user = await AuthRepository.findById(userId);
+  static async changePassword(
+    email: string,
+    oldPassword: string,
+    newPassword: string,
+  ) {
+    const user = await AuthRepository.findByEmail(email);
 
     if (!user) {
       throw new ApiError(404, "Usuário não encontrado");
