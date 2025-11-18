@@ -64,5 +64,51 @@ export const apiClient = {
       throw error;
     }
   },
+
+  async patch<T>(endpoint: string, body: any): Promise<T> {
+    const cleanEndpoint = endpoint.startsWith('/') ? endpoint : `/${endpoint}`;
+    const url = `${API_BASE_URL}${cleanEndpoint}`;
+
+    try {
+      const response = await fetch(url, {
+        method: 'PATCH',
+        headers: apiClient.getHeaders(),
+        body: JSON.stringify(body),
+      });
+
+      if (!response.ok) {
+        const errorBody = await response.json().catch(() => ({}));
+        throw new Error(errorBody.message || `Erro na API (${response.status})`);
+      }
+
+      return response.json();
+    } catch (error) {
+      console.error(`[API PATCH] Erro em ${url}:`, error);
+      throw error;
+    }
+  },
+
+  async put<T>(endpoint: string, body: any): Promise<T> {
+    const cleanEndpoint = endpoint.startsWith('/') ? endpoint : `/${endpoint}`;
+    const url = `${API_BASE_URL}${cleanEndpoint}`;
+
+    try {
+      const response = await fetch(url, {
+        method: 'PUT',
+        headers: apiClient.getHeaders(),
+        body: JSON.stringify(body),
+      });
+
+      if (!response.ok) {
+        const errorBody = await response.json().catch(() => ({}));
+        throw new Error(errorBody.message || `Erro na API (${response.status})`);
+      }
+
+      return response.json();
+    } catch (error) {
+      console.error(`[API PATCH] Erro em ${url}:`, error);
+      throw error;
+    }
+  },
   
 };

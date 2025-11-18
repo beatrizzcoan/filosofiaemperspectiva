@@ -4,6 +4,7 @@ export interface User {
   id: number;
   name: string;
   email: string;
+  avatarUrl?: string | null;
 }
 
 export interface LoginResponse {
@@ -21,5 +22,13 @@ export const AuthService = {
 
   async getMe(): Promise<User> {
     return apiClient.get<User>('/auth/me');
+  },
+
+  async updateProfile(data: { name?: string; avatarUrl?: string }): Promise<User> {
+    return apiClient.patch<User>('/auth/me', data);
+  },
+
+  async changePassword(oldPassword: string, newPassword: string): Promise<{ message: string }> {
+    return apiClient.put<{ message: string }>('/auth/change-password', { oldPassword, newPassword });
   }
 };
