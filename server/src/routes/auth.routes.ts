@@ -8,6 +8,7 @@ router.post("/register", AuthController.createUser);
 router.post("/login", AuthController.login);
 router.put("/change-password", AuthController.changePassword);
 
+router.patch("/me", authMiddleware, AuthController.updateProfile);
 router.get("/me", authMiddleware, AuthController.getMe);
 
 export default router;

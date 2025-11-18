@@ -91,4 +91,23 @@ export class AuthController {
       next(error);
     }
   }
+
+  static async updateProfile(req: Request, res: Response, next: NextFunction) {
+    try {
+      if (!req.user) throw new ApiError(401, "Acesso não autorizado");
+      const { name, avatarUrl } = req.body;
+
+      const updatedUser = await UserService.updateProfile(req.user.id, {
+        name,
+        avatarUrl,
+      });
+      res.json(updatedUser);
+    } catch (error) {
+      if (error instanceof ApiError)
+        return res
+          .status(error.getStatusCode())
+          .json({ message: error.message });
+      next(error);
+    }
+  }
 }

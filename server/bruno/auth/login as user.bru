@@ -1,7 +1,7 @@
 meta {
   name: login as user
   type: http
-  seq: 2
+  seq: 1
 }
 
 post {
@@ -14,5 +14,12 @@ body:json {
   {
     "email": "teste@teste.gaming",
     "password": "123456"
+  }
+}
+
+script:post-response {
+  if (res.status === 200) {
+    const token = res.body.token;
+    bru.setVar('authToken', token);
   }
 }

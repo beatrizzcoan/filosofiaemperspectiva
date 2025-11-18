@@ -98,6 +98,19 @@ export class UserService {
     return userWithoutPassword;
   }
 
+  static async updateProfile(
+    userId: number,
+    data: { name?: string; avatarUrl?: string },
+  ) {
+    if (data.name && data.name.length < 3) {
+      throw new ApiError(400, "Nome deve ter pelo menos 3 caracteres");
+    }
+
+    const user = await AuthRepository.update(userId, data);
+    const { password: _, ...userWithoutPassword } = user.toJSON();
+    return userWithoutPassword;
+  }
+
   static async getAllUsers() {
     const users = await User.findAll({ order: [["id", "ASC"]] });
     return users;

@@ -18,6 +18,7 @@ export class User extends Model<
   declare name: string;
   declare email: string;
   declare password: string;
+  declare avatarUrl: CreationOptional<string | null>;
 
   declare getBookmarks: HasManyGetAssociationsMixin<Bookmark>;
   declare addBookmark: HasManyAddAssociationMixin<Bookmark, number>;
@@ -43,6 +44,10 @@ export class User extends Model<
         password: {
           type: DataTypes.STRING(255),
           allowNull: false,
+        },
+        avatarUrl: {
+          type: DataTypes.TEXT,
+          allowNull: true,
         },
       },
       {

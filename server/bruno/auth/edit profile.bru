@@ -1,12 +1,12 @@
 meta {
-  name: me
+  name: edit profile
   type: http
-  seq: 4
+  seq: 5
 }
 
-get {
+patch {
   url: http://localhost:8000/auth/me
-  body: none
+  body: json
   auth: bearer
 }
 
@@ -14,7 +14,9 @@ auth:bearer {
   token: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjEiLCJlbWFpbCI6InRlc3RlQHRlc3RlLmdhbWluZyIsIm5hbWUiOiJndWlsaGVybWUgbWFyw6dhbCIsImlhdCI6MTc2MzUwNDM1N30.wOmGV68JH_UU7a0qcA7wBVyHbeVA3QkoRX6FZk1Xzx8
 }
 
-settings {
-  encodeUrl: true
-  timeout: 0
+body:json {
+  {
+    "name": "Bruno Filósofo",
+    "avatarUrl": "https://github.com/shadcn.png"
+  }
 }
