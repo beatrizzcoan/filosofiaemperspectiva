@@ -1,67 +1,140 @@
-import React from 'react';
-import { Link } from 'react-router-dom';
-import { Input } from '../components/ui/input';
-import { Button } from '../components/ui/button';
-import { Card, CardContent, CardHeader, CardTitle } from '../components/ui/card';
-import { Badge } from '../components/ui/badge';
-import { Search } from 'lucide-react';
-
-const mockStories = [
-  { id: 1, title: "Sobre a arte de recomeçar", tag: "Propósito", img: "a3ccb3/f5f2ec?text=Reflexão", tagColor: "bg-verde text-gray-800" },
-  { id: 2, title: "Encontrando calma na ansiedade", tag: "Ansiedade", img: "8fccda/f5f2ec?text=Acolhimento", tagColor: "bg-azul text-white" },
-  { id: 3, title: "O que é 'dar conta de tudo'?", tag: "Sobrecarga", img: "f4b6a0/f5f2ec?text=Equilíbrio", tagColor: "bg-rosa text-gray-800" },
-  { id: 4, title: "A coragem de ser imperfeito", tag: "Insegurança", img: "8fccda/f5f2ec?text=Jornada", tagColor: "bg-azul text-white" },
-  { id: 5, title: "Construindo hábitos com paciência", tag: "Hábitos", img: "a3ccb3/f5f2ec?text=Constância", tagColor: "bg-verde text-gray-800" },
-  { id: 6, title: "O sentido da solidão", tag: "Propósito", img: "f4b6a0/f5f2ec?text=Perspectiva", tagColor: "bg-rosa text-gray-800" },
-];
+import React, { useEffect, useState } from "react";
+import { Link } from "react-router-dom";
+import { Input } from "../components/ui/input";
+import { Button } from "../components/ui/button";
+import {
+  Card,
+  CardContent,
+  CardHeader,
+  CardTitle,
+} from "../components/ui/card";
+import { Badge } from "../components/ui/badge";
+import { Search } from "lucide-react";
+import { StoryService, Story } from "@/api/stories";
+import { Skeleton } from "../components/ui/skeleton";
 
 const ExplorePage: React.FC = () => {
+  const [stories, setStories] = useState<Story[]>([]);
+  const [loading, setLoading] = useState(true);
+  const [searchTerm, setSearchTerm] = useState("");
+
+  useEffect(() => {
+    const fetchStories = async () => {
+      try {
+        const data = await StoryService.getAll();
+        setStories(data);
+      } catch (error) {
+        console.error("Erro ao carregar histórias:", error);
+      } finally {
+        setLoading(false);
+      }
+    };
+
+    fetchStories();
+  }, []);
+
+  const filteredStories = stories.filter(
+    (story) =>
+      story.title.toLowerCase().includes(searchTerm.toLowerCase()) ||
+      story.tag.toLowerCase().includes(searchTerm.toLowerCase()),
+  );
+
   return (
-    <div className="container mx-auto p-8 max-w-7xl">
-      <h2 className="text-4xl font-serif text-center mb-6 text-gray-800">Explore Histórias e Perspectivas</h2>
-      
+    <div className="container mx-auto p-8 max-w-7xl min-h-screen">
+      <h2 className="text-4xl font-serif text-center mb-6 text-gray-800">
+        Explore Perspectivas
+      </h2>
+
       <div className="mb-8 max-w-2xl mx-auto relative">
-        <Search className="absolute left-4 top-1/2 -translate-y-1/2 text-gray-400" size={20} />
+        <Search
+          className="absolute left-4 top-1/2 -translate-y-1/2 text-gray-400"
+          size={20}
+        />
         <Input
           type="search"
-          placeholder="O que você busca hoje? (ex: ansiedade, propósito...)"
+          placeholder="Busque por título, tema ou sentimento..."
           className="bg-white text-base p-6 pl-12 rounded-full shadow-md border-gray-300 focus-visible:ring-verde"
+          value={searchTerm}
+          onChange={(e) => setSearchTerm(e.target.value)}
         />
       </div>
 
-      <div className="flex justify-center gap-3 md:gap-4 mb-12">
-        <Button variant="outline" className="bg-white shadow-sm rounded-full text-gray-700 hover:bg-gray-100 border-gray-300 focus:bg-gray-100 focus:ring-1 focus:ring-verde">
-          Insegurança/Ansiedade
-        </Button>
-        <Button variant="outline" className="bg-white shadow-sm rounded-full text-gray-700 hover:bg-gray-100 border-gray-300 focus:bg-gray-100 focus:ring-1 focus:ring-verde">
-          Falta de Propósito
-        </Button>
-        <Button variant="outline" className="bg-white shadow-sm rounded-full text-gray-700 hover:bg-gray-100 border-gray-300 focus:bg-gray-100 focus:ring-1 focus:ring-verde">
-          Manter Hábitos
-        </Button>
+      <div className="flex flex-wrap justify-center gap-3 md:gap-4 mb-12">
+        {["Existencialismo", "Ansiedade", "Propósito"].map((tag) => (
+          <Button
+            key={tag}
+            variant="outline"
+            onClick={() => setSearchTerm(tag)}
+            className="bg-white shadow-sm rounded-full text-gray-700 hover:bg-gray-100 border-gray-300"
+          >
+            {tag}
+          </Button>
+        ))}
+        {searchTerm && (
+          <Button
+            variant="ghost"
+            onClick={() => setSearchTerm("")}
+            className="text-gray-500 hover:text-red-500"
+          >
+            Limpar filtros
+          </Button>
+        )}
       </div>
 
-      <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
-        {mockStories.map((story) => (
-          <Card key={story.id} className="bg-white shadow-lg overflow-hidden transition-all duration-300 hover:shadow-2xl hover:-translate-y-1 border-0 group">
-            <Link to={`/leitura/${story.id}`} className="block">
-              <div className="w-full h-56 bg-gray-200 overflow-hidden">
-                <img 
-                  src={`https://placehold.co/600x400/${story.img}`} 
-                  alt={story.title} 
-                  className="w-full h-full object-cover transition-transform duration-300 group-hover:scale-105"
-                />
-              </div>
-              <CardHeader>
-                <CardTitle className="font-serif text-2xl leading-snug h-16">{story.title}</CardTitle>
-              </CardHeader>
-              <CardContent>
-                <Badge className={`font-sans text-sm px-4 py-1 rounded-full ${story.tagColor}`}>{story.tag}</Badge>
-              </CardContent>
-            </Link>
-          </Card>
-        ))}
-      </div>
+      {loading ? (
+        <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
+          {[1, 2, 3].map((i) => (
+            <div key={i} className="space-y-3">
+              <Skeleton className="h-56 w-full rounded-xl" />
+              <Skeleton className="h-8 w-3/4" />
+              <Skeleton className="h-4 w-1/2" />
+            </div>
+          ))}
+        </div>
+      ) : (
+        <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
+          {filteredStories.map((story) => (
+            <Card
+              key={story.id}
+              className="bg-white shadow-lg overflow-hidden transition-all duration-300 hover:shadow-2xl hover:-translate-y-1 border-0 group h-full flex flex-col"
+            >
+              <Link
+                to={`/leitura/${story.id}`}
+                className="block flex-1 flex flex-col"
+              >
+                <div className="w-full h-56 bg-gray-200 overflow-hidden relative">
+                  <img
+                    src={story.imageUrl}
+                    alt={story.title}
+                    className="w-full h-full object-cover transition-transform duration-500 group-hover:scale-105"
+                  />
+                  <div className="absolute inset-0 bg-black/10 group-hover:bg-transparent transition-colors" />
+                </div>
+                <CardHeader>
+                  <CardTitle className="font-serif text-2xl leading-snug">
+                    {story.title}
+                  </CardTitle>
+                </CardHeader>
+                <CardContent className="mt-auto">
+                  <Badge
+                    className={`font-sans text-sm px-4 py-1 rounded-full shadow-sm ${story.tagColor}`}
+                  >
+                    {story.tag}
+                  </Badge>
+                </CardContent>
+              </Link>
+            </Card>
+          ))}
+
+          {filteredStories.length === 0 && (
+            <div className="col-span-full text-center py-12 text-gray-500">
+              <p className="text-lg font-serif">
+                Nenhuma história encontrada para sua busca.
+              </p>
+            </div>
+          )}
+        </div>
+      )}
     </div>
   );
 };
