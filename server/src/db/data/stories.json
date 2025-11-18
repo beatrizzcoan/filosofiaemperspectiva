@@ -1,30 +1,30 @@
 [
   {
-    "title": "The Forgotten City of Al-Khadir",
-    "tag": "Adventure",
-    "tagColor": "#FF5733",
-    "content": "Deep within the searing desert, a legend speaks of a city of gold, Al-Khadir. An intrepid explorer, armed with a cryptic map, sets out to uncover its secrets, facing sandstorms and ancient guardians along the way.",
-    "imageUrl": "https://example.com/images/al-khadir.png"
+    "title": "O Deserto de Si Mesmo",
+    "tag": "Existencialismo",
+    "tagColor": "bg-orange-500 text-white",
+    "content": "<h2>A Miragem da Certeza</h2><p>Nas profundezas do deserto escaldante, onde o silêncio é tão alto que ecoa na alma, existe a lenda de <strong>Al-Khadir</strong>. Não uma cidade de ouro, mas um estado de espírito.</p><p>Um viajante não busca tesouros, mas a si mesmo. A areia, em sua infinita impermanência, nos ensina que nada do que construímos — nem nossos impérios, nem nossas identidades — é sólido.</p><blockquote>\"O deserto não guarda segredos de quem sabe ouvir o vazio.\"</blockquote><p>Ao enfrentar tempestades que apagam o horizonte, percebemos que o medo não vem de se perder no mundo, mas de se encontrar sem as máscaras que usamos na sociedade. A verdadeira jornada é interna.</p><h3>O Encontro</h3><p>Ao chegar nas ruínas, ele não encontrou respostas, apenas um espelho antigo. A lição final de Al-Khadir: <em>nós somos o que buscamos</em>, e a angústia da busca é, paradoxalmente, a prova da nossa liberdade.</p>",
+    "imageUrl": "https://placehold.co/600x400/FF5733/ffffff?text=Deserto+Interior"
   },
   {
-    "title": "Cybernetic Serenade",
-    "tag": "Sci-Fi",
-    "tagColor": "#33CFFF",
-    "content": "In a neon-drenched metropolis of 2077, a reclusive android musician discovers a hidden frequency that can rewrite memories. He must protect it from a powerful corporation that wants to use it to control the populace.",
-    "imageUrl": "https://example.com/images/cybernetic.png"
+    "title": "O Fantasma na Máquina",
+    "tag": "Tecnologia & Ser",
+    "tagColor": "bg-cyan-500 text-white",
+    "content": "<h2>A Alma Digital</h2><p>Em uma metrópole de 2077, onde a consciência pode ser copiada e colada, um androide músico questiona: <em>o que faz de nós, humanos?</em></p><p>Ele descobriu uma frequência que não existia nos códigos binários. Uma nota imperfeita. A falha. Heidegger diria que a técnica nos afasta da essência, mas e se a técnica criar sua própria angústia?</p><ul><li>A memória é um arquivo ou uma vivência?</li><li>O amor é um algoritmo químico ou uma escolha transcendental?</li></ul><p>Fugindo de corporações que querem padronizar o sentimento, ele percebe que a resistência final não é a violência, mas a <strong>arte</strong>. Criar algo inútil, algo belo, é o único ato de rebeldia em um mundo de eficiência total.</p>",
+    "imageUrl": "https://placehold.co/600x400/33CFFF/ffffff?text=Cyber+Soul"
   },
   {
-    "title": "The Last Enchantment",
-    "tag": "Fantasy",
-    "tagColor": "#8E44AD",
-    "content": "In a world where magic is fading, a young apprentice is tasked with a perilous journey to the heart of the Whispering Woods. Her mission is to find the last magical seed to restore balance to the kingdom.",
-    "imageUrl": "https://example.com/images/enchantment.png"
+    "title": "O Reencantamento do Mundo",
+    "tag": "Fenomenologia",
+    "tagColor": "bg-purple-600 text-white",
+    "content": "<h2>O Silêncio da Floresta</h2><p>Max Weber falou sobre o 'desencantamento do mundo' pela racionalidade. Mas nesta floresta, a lógica falha.</p><p>Uma jovem caminha não para encontrar magia sobrenatural, mas para recuperar a capacidade de se espantar. A <strong>Floresta dos Sussurros</strong> não fala com palavras, mas com presenças.</p><blockquote>\"A beleza não está na coisa, mas no olhar que pousa sobre ela.\"</blockquote><p>Sua missão é plantar uma semente. Não uma semente mágica, mas uma semente comum. O ato revolucionário é ter paciência para vê-la crescer em um mundo que exige imediatismo. O encantamento volta quando paramos de tentar dominar a natureza e começamos a dialogar com ela.</p>",
+    "imageUrl": "https://placehold.co/600x400/8E44AD/ffffff?text=Natureza"
   },
   {
-    "title": "Echoes of the Deep",
-    "tag": "Mystery",
-    "tagColor": "#2C3E50",
-    "content": "A deep-sea biologist investigating a strange sonar anomaly discovers a submersible that vanished 50 years ago. As she explores the ghost vessel, she realizes she is not alone in the crushing darkness of the abyss.",
-    "imageUrl": "https://example.com/images/deep-sea.png"
+    "title": "O Abismo do Inconsciente",
+    "tag": "Psicanálise",
+    "tagColor": "bg-slate-700 text-white",
+    "content": "<h2>Mergulho no Escuro</h2><p>O oceano profundo é a metáfora perfeita para o nosso inconsciente. Escuro, vasto, pressurizado e habitado por monstros que nós mesmos criamos.</p><p>Uma bióloga encontra um submersível perdido. Ao entrar, ela percebe que o medo do escuro é, na verdade, o medo do que o escuro revela sobre nós. Jung chamaria isso de confronto com a <strong>Sombra</strong>.</p><h3>A Integração</h3><p><em>\"Aquilo a que você resiste, persiste.\"</em></p><p>Ela desliga as luzes do submersível. No breu total, ela finalmente vê a bioluminescência natural da vida. Aceitar nossos aspectos sombrios não é se render ao mal, mas tornar-se inteiro. A luz só brilha onde há escuridão para contrastá-la.</p>",
+    "imageUrl": "https://placehold.co/600x400/2C3E50/ffffff?text=Abismo"
   }
 ]

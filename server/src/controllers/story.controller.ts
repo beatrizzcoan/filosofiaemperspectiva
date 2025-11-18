@@ -10,4 +10,14 @@ export class StoryController {
       next(error);
     }
   }
+
+  static async getStoryById(req: Request, res: Response, next: NextFunction) {
+    try {
+      const { id } = req.params;
+      const story = await StoryService.getStoryById(Number(id));
+      res.json(story);
+    } catch (error) {
+      next(error);
+    }
+  }
 }
