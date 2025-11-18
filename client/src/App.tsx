@@ -1,11 +1,12 @@
-import { Routes, Route } from 'react-router-dom';
+import { Routes, Route } from "react-router-dom";
 
-import Header from '@/components/Header'; 
-import HomePage from '@/pages/HomePage';  
-import ExplorePage from '@/pages/ExplorePage'; 
-import ProfilePage from '@/pages/ProfilePage'; 
-import LoginPage from '@/pages/LoginPage';
-import RegisterPage from '@/pages/RegisterPage';
+import Header from "@/components/Header";
+import HomePage from "@/pages/HomePage";
+import ExplorePage from "@/pages/ExplorePage";
+import ProfilePage from "@/pages/ProfilePage";
+import LoginPage from "@/pages/LoginPage";
+import RegisterPage from "@/pages/RegisterPage";
+import ReadingPage from "@/pages/ReadingPage";
 
 function App() {
   return (
@@ -18,6 +19,8 @@ function App() {
           <Route path="/perfil" element={<ProfilePage />} />
           <Route path="/login" element={<LoginPage />} />
           <Route path="/register" element={<RegisterPage />} />
+
+          <Route path="/leitura/:storyId" element={<ReadingPage />} />
         </Routes>
       </main>
     </div>
