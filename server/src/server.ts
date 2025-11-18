@@ -2,12 +2,21 @@ import dotenv from "dotenv";
 import { sequelize } from "./db/sequelize";
 import { initModels } from "./models";
 import express from "express";
+import cors from "cors";
 import userRoutes from "./routes/auth.routes";
 import { seedDatabase } from "./db/seeder";
 import storyRoutes from "./routes/story.routes";
 dotenv.config();
 
 const app = express();
+
+app.use(
+  cors({
+    origin: "*",
+    methods: ["GET", "POST", "PUT", "DELETE"],
+    allowedHeaders: ["Content-Type", "Authorization"],
+  }),
+);
 
 const PORT = Number(process.env.PORT || 8000);
 export const JWT_SECRET: string = process.env.JWT_SECRET!;

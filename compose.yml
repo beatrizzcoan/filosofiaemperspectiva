@@ -42,6 +42,8 @@ services:
       - ./client:/app/client
     depends_on:
       - server
+    environment:
+      - VITE_BACKEND_HOST=http://localhost:8000
 
 volumes:
   postgres_data:
