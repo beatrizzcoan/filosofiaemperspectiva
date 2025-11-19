@@ -8,9 +8,7 @@ export class AuthController {
       const { name, email, password } = req.body;
 
       if (!name || !email || !password) {
-        return res
-          .status(400)
-          .json({ message: "Usuário, email e senha são obrigatórios" });
+        return res.status(400).json({ message: "Usuário, email e senha são obrigatórios" });
       }
 
       const user = await UserService.createUser(name, email, password);
@@ -29,9 +27,7 @@ export class AuthController {
       const { email, password } = req.body;
 
       if (!email || !password) {
-        return res
-          .status(400)
-          .json({ message: "Email e senha são obrigatórios" });
+        return res.status(400).json({ message: "Email e senha são obrigatórios" });
       }
 
       const token = await UserService.login(email, password);
@@ -39,9 +35,7 @@ export class AuthController {
       res.json({ token });
     } catch (error) {
       if (error instanceof ApiError) {
-        return res
-          .status(error.getStatusCode())
-          .json({ message: error.message });
+        return res.status(error.getStatusCode()).json({ message: error.message });
       }
 
       next(error);
@@ -53,9 +47,7 @@ export class AuthController {
       const { email, oldPassword, newPassword } = req.body;
 
       if (!oldPassword || !newPassword) {
-        return res
-          .status(400)
-          .json({ message: "Senha antiga e nova são obrigatórias" });
+        return res.status(400).json({ message: "Senha antiga e nova são obrigatórias" });
       }
 
       await UserService.changePassword(email, oldPassword, newPassword);
@@ -63,9 +55,7 @@ export class AuthController {
       res.json({ message: "Senha alterada com sucesso" });
     } catch (error) {
       if (error instanceof ApiError) {
-        return res
-          .status(error.getStatusCode())
-          .json({ message: error.message });
+        return res.status(error.getStatusCode()).json({ message: error.message });
       }
 
       next(error);
@@ -74,19 +64,17 @@ export class AuthController {
 
   static async getMe(req: Request, res: Response, next: NextFunction) {
     try {
-      if (!req.user) {
-        throw new ApiError(401, "Acesso não autorizado");
-      }
+      const userData = req.app.get("userData");
+      const userID = userData.id;
 
-      const userId = req.user.id;
-      const user = await UserService.getMe(userId);
+      if (!userID) throw new ApiError(401, "Acesso não autorizado");
+
+      const user = await UserService.getMe(userID);
 
       res.json(user);
     } catch (error) {
       if (error instanceof ApiError) {
-        return res
-          .status(error.getStatusCode())
-          .json({ message: error.message });
+        return res.status(error.getStatusCode()).json({ message: error.message });
       }
       next(error);
     }
@@ -94,19 +82,20 @@ export class AuthController {
 
   static async updateProfile(req: Request, res: Response, next: NextFunction) {
     try {
-      if (!req.user) throw new ApiError(401, "Acesso não autorizado");
+      const userData = req.app.get("userData");
+      const userID = userData.id;
+
+      if (!userID) throw new ApiError(401, "Acesso não autorizado");
+
       const { name, avatarUrl } = req.body;
 
-      const updatedUser = await UserService.updateProfile(req.user.id, {
+      const updatedUser = await UserService.updateProfile(userID, {
         name,
         avatarUrl,
       });
       res.json(updatedUser);
     } catch (error) {
-      if (error instanceof ApiError)
-        return res
-          .status(error.getStatusCode())
-          .json({ message: error.message });
+      if (error instanceof ApiError) return res.status(error.getStatusCode()).json({ message: error.message });
       next(error);
     }
   }
