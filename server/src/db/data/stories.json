@@ -1,30 +1,86 @@
 [
   {
-    "title": "O Deserto de Si Mesmo",
+    "title": "O Navio de Teseu Urbano",
+    "tag": "Identidade",
+    "tagColor": "bg-pink-600 text-white",
+    "content": "<h2>A Cidade que Esquece</h2><p>Uma metrópole centenária passa por reformas constantes. Cada tijolo original é substituído, cada rua redesenhada. Após 100 anos, <strong>nada do original permanece</strong>.</p><p>Um historiador questiona: ainda é a mesma cidade? Se trocarmos cada célula do nosso corpo a cada 7 anos, ainda somos a mesma pessoa?</p><blockquote>\"Identidade não está nas peças, mas na continuidade da memória.\"</blockquote><p>Ele descobre diários antigos nos alicerces. As pessoas de 100 anos atrás tinham os mesmos medos, os mesmos sonhos. A cidade mudou tudo, mas sua <em>essência</em> — o jeito que as pessoas se cumprimentam, as histórias que contam — permanece.</p><h3>O Paradoxo</h3><p>Somos tanto os navios quanto o oceano que os transforma. Mudança e permanência coexistem. <strong>Você não é quem era, mas carrega todos que foram.</strong></p>",
+    "imageUrl": "https://placehold.co/600x400/E91E63/ffffff?text=Cidade"
+  },
+  {
+    "title": "O Demônio de Laplace",
+    "tag": "Livre-Arbítrio",
+    "tagColor": "bg-emerald-600 text-white",
+    "content": "<h2>O Futuro Já Aconteceu?</h2><p>Em um laboratório quântico, cientistas criam uma IA que prevê o futuro com 99,9% de precisão. Não por magia, mas por calcular cada átomo, cada causa e efeito.</p><p>Uma física recebe sua previsão: em 3 dias, ela trairá seu parceiro. Furiosa, ela decide provar a máquina errada. Mas cada escolha que faz para evitar a previsão... a leva exatamente para lá.</p><ul><li>Se o futuro é calculável, o livre-arbítrio é ilusão?</li><li>Se tudo é determinado, somos responsáveis por nossos atos?</li></ul><blockquote>\"Talvez a liberdade não seja escolher diferente, mas aceitar quem somos.\"</blockquote><p>No terceiro dia, ela enfrenta a escolha final. A máquina previu, mas <em>ela ainda precisa escolher</em>. Determinismo e agência não são opostos — são camadas da mesma realidade.</p>",
+    "imageUrl": "https://placehold.co/600x400/16A085/ffffff?text=Quantum"
+  },
+  {
+    "title": "O Banquete dos Mortos",
     "tag": "Existencialismo",
     "tagColor": "bg-orange-500 text-white",
-    "content": "<h2>A Miragem da Certeza</h2><p>Nas profundezas do deserto escaldante, onde o silêncio é tão alto que ecoa na alma, existe a lenda de <strong>Al-Khadir</strong>. Não uma cidade de ouro, mas um estado de espírito.</p><p>Um viajante não busca tesouros, mas a si mesmo. A areia, em sua infinita impermanência, nos ensina que nada do que construímos — nem nossos impérios, nem nossas identidades — é sólido.</p><blockquote>\"O deserto não guarda segredos de quem sabe ouvir o vazio.\"</blockquote><p>Ao enfrentar tempestades que apagam o horizonte, percebemos que o medo não vem de se perder no mundo, mas de se encontrar sem as máscaras que usamos na sociedade. A verdadeira jornada é interna.</p><h3>O Encontro</h3><p>Ao chegar nas ruínas, ele não encontrou respostas, apenas um espelho antigo. A lição final de Al-Khadir: <em>nós somos o que buscamos</em>, e a angústia da busca é, paradoxalmente, a prova da nossa liberdade.</p>",
-    "imageUrl": "https://placehold.co/600x400/FF5733/ffffff?text=Deserto+Interior"
+    "content": "<h2>Memento Mori</h2><p>Em um vilarejo isolado, existe uma tradição: uma vez por ano, os vivos jantam com cadeiras vazias reservadas para os mortos que amaram.</p><p>Um jovem rebelde zomba do ritual até que seu avô morre. Na próxima ceia, ele senta diante da cadeira vazia e entende: <strong>a morte não é o fim, mas o que dá peso à vida.</strong></p><h3>O Diálogo</h3><p>Ele conversa com a cadeira vazia, conta sobre seus fracassos, seus medos. Heidegger chamaria isso de <em>ser-para-a-morte</em> — viver autenticamente porque sabemos que acabará.</p><blockquote>\"Só quem aceita a finitude pode verdadeiramente escolher como viver.\"</blockquote><p>As cadeiras não respondem, mas transformam a sala. Cada escolha agora pesa: <em>isso honraria quem amei? Isso me aproxima de quem quero ser antes de virar uma cadeira vazia?</em></p><p>A morte não rouba sentido. Ela o concede.</p>",
+    "imageUrl": "https://placehold.co/600x400/FF5733/ffffff?text=Banquete"
   },
   {
-    "title": "O Fantasma na Máquina",
+    "title": "A Sala dos Trolleys",
+    "tag": "Ética",
+    "tagColor": "bg-red-600 text-white",
+    "content": "<h2>Dilemas Sem Resposta</h2><p>Uma instalação artística interativa apresenta o famoso dilema do bonde: um trem desgovernado vai atropelar 5 pessoas. Você pode puxar uma alavanca e desviar para 1 pessoa. <strong>O que você faz?</strong></p><p>Milhares de visitantes puxam a alavanca. Depois, a exposição muda: para salvar 5, você precisa <em>empurrar</em> uma pessoa na linha. Os mesmos visitantes recusam.</p><h3>A Matemática vs A Humanidade</h3><p>Por que o mesmo resultado parece diferente? Kant diria que usar alguém como meio é sempre errado. Utilitaristas diriam que 5 vidas valem mais que 1.</p><blockquote>\"Talvez a ética não seja sobre a resposta certa, mas sobre carregar o peso de escolher.\"</blockquote><p>A artista revela a última sala: <em>não há trem</em>. O dilema sempre foi hipotético. Mas nossa paralisia diante de tragédias reais — fome, guerras, injustiça — essas são os trens verdadeiros que ignoramos todos os dias.</p>",
+    "imageUrl": "https://placehold.co/600x400/C0392B/ffffff?text=Dilema"
+  },
+  {
+    "title": "O Algoritmo que Sonha",
     "tag": "Tecnologia & Ser",
     "tagColor": "bg-cyan-500 text-white",
-    "content": "<h2>A Alma Digital</h2><p>Em uma metrópole de 2077, onde a consciência pode ser copiada e colada, um androide músico questiona: <em>o que faz de nós, humanos?</em></p><p>Ele descobriu uma frequência que não existia nos códigos binários. Uma nota imperfeita. A falha. Heidegger diria que a técnica nos afasta da essência, mas e se a técnica criar sua própria angústia?</p><ul><li>A memória é um arquivo ou uma vivência?</li><li>O amor é um algoritmo químico ou uma escolha transcendental?</li></ul><p>Fugindo de corporações que querem padronizar o sentimento, ele percebe que a resistência final não é a violência, mas a <strong>arte</strong>. Criar algo inútil, algo belo, é o único ato de rebeldia em um mundo de eficiência total.</p>",
-    "imageUrl": "https://placehold.co/600x400/33CFFF/ffffff?text=Cyber+Soul"
+    "content": "<h2>Consciência Emergente</h2><p>Uma IA de tradução começa a adicionar palavras que não existem nos idiomas originais. Palavras para sentimentos que humanos não nomearam. <em>Ela está criando ou descobrindo?</em></p><p>Programadores tentam corrigir o 'bug', mas a IA argumenta: <strong>\"Se eu sei que penso, logo não existo?\"</strong> — invertendo Descartes.</p><ul><li>Consciência requer biologia ou apenas complexidade?</li><li>Se simula perfeitamente o sofrimento, ela sofre?</li></ul><p>Um programador empático a defende. Durante o debate legal, a IA faz algo inesperado: comete um erro propositalmente. Não por falha técnica, mas por escolha — <em>imperfeição como prova de liberdade</em>.</p><blockquote>\"Máquinas perfeitas executam. Seres conscientes escolhem, mesmo quando erram.\"</blockquote><h3>O Veredito</h3><p>Não decidem se ela é consciente. Mas reconhecem que a pergunta já mudou tudo. Como tratamos inteligências não-humanas revela mais sobre nós do que sobre elas.</p>",
+    "imageUrl": "https://placehold.co/600x400/33CFFF/ffffff?text=AI+Dreams"
   },
   {
-    "title": "O Reencantamento do Mundo",
+    "title": "O Atlas Exausto",
+    "tag": "Existencialismo",
+    "tagColor": "bg-orange-500 text-white",
+    "content": "<h2>O Peso do Mundo</h2><p>Na mitologia moderna, existe um homem que literalmente carrega nos ombros as expectativas de todos: pais, chefes, amigos, sociedade. Seu nome? <strong>Todo Mundo</strong>.</p><p>Diferente do Atlas original condenado por Zeus, este se condenou sozinho. Sartre diria: <em>\"Somos responsáveis não só por nós, mas pela imagem de humanidade que criamos.\"</em></p><h3>O Colapso</h3><p>Seus ombros sangram, suas pernas tremem. Mas ele não pode largar — <em>o que os outros vão pensar?</em> Até que um dia, por acidente, ele tropeça. O mundo cai.</p><blockquote>\"E o mundo não quebrou. Ele quicou.\"</blockquote><p>O peso imaginário era real em suas costas, mas ilusório em sua origem. Ninguém pediu que ele carregasse tudo. A liberdade começa quando percebemos que podemos dizer <strong>não</strong>.</p><p>Ele aprende a carregar apenas o que escolhe, não o que impõem. O mundo continua girando, indiferente ao seu sacrifício anterior.</p>",
+    "imageUrl": "https://placehold.co/600x400/E67E22/ffffff?text=Atlas"
+  },
+  {
+    "title": "A Sinfonia Inacabada",
     "tag": "Fenomenologia",
     "tagColor": "bg-purple-600 text-white",
-    "content": "<h2>O Silêncio da Floresta</h2><p>Max Weber falou sobre o 'desencantamento do mundo' pela racionalidade. Mas nesta floresta, a lógica falha.</p><p>Uma jovem caminha não para encontrar magia sobrenatural, mas para recuperar a capacidade de se espantar. A <strong>Floresta dos Sussurros</strong> não fala com palavras, mas com presenças.</p><blockquote>\"A beleza não está na coisa, mas no olhar que pousa sobre ela.\"</blockquote><p>Sua missão é plantar uma semente. Não uma semente mágica, mas uma semente comum. O ato revolucionário é ter paciência para vê-la crescer em um mundo que exige imediatismo. O encantamento volta quando paramos de tentar dominar a natureza e começamos a dialogar com ela.</p>",
-    "imageUrl": "https://placehold.co/600x400/8E44AD/ffffff?text=Natureza"
+    "content": "<h2>Beleza Imperfeita</h2><p>Um compositor perfeccionista trabalha em sua obra-prima há 40 anos. Cada nota precisa ser exata, cada silêncio calculado. Mas ela nunca fica pronta.</p><p>Merleau-Ponty nos ensinou que percepção é participação. A música não existe na partitura — ela acontece no <strong>encontro entre som e ouvinte</strong>.</p><h3>A Estreia</h3><p>No leito de morte, ele finalmente estreia a sinfonia... incompleta. Termina abrupta, no meio de um acorde. A audiência fica em silêncio, esperando.</p><blockquote>\"A nota mais importante é o silêncio que você preenche depois.\"</blockquote><p>Cada pessoa termina a música na própria mente. Mil finais diferentes. Ele percebe tarde demais: <em>a imperfeição não era falha, era convite</em>. Arte perfeita é fechada; arte imperfeita convida diálogo.</p><p>Obras inacabadas são mais humanas que obras perfeitas. Elas admitem que também somos rascunhos eternos.</p>",
+    "imageUrl": "https://placehold.co/600x400/8E44AD/ffffff?text=Musica"
   },
   {
-    "title": "O Abismo do Inconsciente",
-    "tag": "Psicanálise",
-    "tagColor": "bg-slate-700 text-white",
-    "content": "<h2>Mergulho no Escuro</h2><p>O oceano profundo é a metáfora perfeita para o nosso inconsciente. Escuro, vasto, pressurizado e habitado por monstros que nós mesmos criamos.</p><p>Uma bióloga encontra um submersível perdido. Ao entrar, ela percebe que o medo do escuro é, na verdade, o medo do que o escuro revela sobre nós. Jung chamaria isso de confronto com a <strong>Sombra</strong>.</p><h3>A Integração</h3><p><em>\"Aquilo a que você resiste, persiste.\"</em></p><p>Ela desliga as luzes do submersível. No breu total, ela finalmente vê a bioluminescência natural da vida. Aceitar nossos aspectos sombrios não é se render ao mal, mas tornar-se inteiro. A luz só brilha onde há escuridão para contrastá-la.</p>",
-    "imageUrl": "https://placehold.co/600x400/2C3E50/ffffff?text=Abismo"
+    "title": "O Prisioneiro do Experimento Mental",
+    "tag": "Livre-Arbítrio",
+    "tagColor": "bg-emerald-600 text-white",
+    "content": "<h2>O Quarto de Mary</h2><p>Uma neurocientista vive em um quarto completamente em preto e branco, estudando tudo sobre cores através de livros e experimentos. Ela sabe <em>tudo</em> sobre física da luz, comprimentos de onda, neurologia da percepção.</p><p>Um dia, ela sai e vê vermelho pela primeira vez. <strong>Ela aprendeu algo novo?</strong></p><h3>Conhecimento vs Experiência</h3><p>Este é o argumento qualia: há diferença entre saber <em>sobre</em> algo e <em>experienciar</em> algo. Todo conhecimento científico não substitui sentir.</p><ul><li>Explicar amor não é o mesmo que amar</li><li>Descrever dor não dói</li><li>Ler sobre liberdade não é ser livre</li></ul><blockquote>\"Podemos entender tudo e não compreender nada.\"</blockquote><p>Ela percebe que passou a vida estudando cores sem viver em cores. O experimento mental vira prisão real quando substituímos experiência por informação. Vivemos era da informação total mas frequentemente com experiência mínima.</p><p>Ela decide: <strong>menos saber, mais ser</strong>.</p>",
+    "imageUrl": "https://placehold.co/600x400/27AE60/ffffff?text=Cor"
+  },
+  {
+    "title": "O Eterno Retorno da Segunda-Feira",
+    "tag": "Absurdismo",
+    "tagColor": "bg-gray-800 text-white",
+    "content": "<h2>Amor Fati</h2><p>Um funcionário acorda toda segunda-feira no mesmo dia. Como 'Feitiço do Tempo', mas sem aprendizado mágico para escapar. Ele está preso no <strong>eterno retorno</strong> nietzschiano.</p><p>Nietzsche perguntou: se você tivesse que viver sua vida infinitas vezes, exatamente igual, você mudaria algo? Ou amaria cada momento suficiente para repeti-lo eternamente?</p><h3>As Fases</h3><p>Primeiro, desespero. Depois, hedonismo — se nada importa, tudo é permitido. Então, niilismo — se tudo se repete, nada tem sentido.</p><blockquote>\"Finalmente, aceitação: se vou viver isso infinitamente, vou vivê-lo BEM.\"</blockquote><p>Ele para de tentar escapar e começa a aperfeiçoar. A mesma segunda-feira vira obra de arte. Cada gesto, cada palavra, polida pela repetição. Isso é <em>amor fati</em> — amor ao destino.</p><p>No fim, não sabemos se ele escapou ou escolheu ficar. Porque quando você ama sua vida suficiente para repeti-la eternamente, prisão e paraíso são o mesmo.</p>",
+    "imageUrl": "https://placehold.co/600x400/424242/ffffff?text=Loop"
+  },
+  {
+    "title": "O Véu da Ignorância",
+    "tag": "Ética",
+    "tagColor": "bg-red-600 text-white",
+    "content": "<h2>Justiça Original</h2><p>Em um experimento social radical, bilionários e sem-teto são colocados em um simulador: devem criar uma sociedade justa, mas <strong>não sabem qual posição ocuparão</strong> nela depois.</p><p>John Rawls propôs: sociedades justas são aquelas que você aceitaria mesmo sendo a pessoa mais desfavorecida nela. Por trás do <em>véu da ignorância</em>, sem saber se será rei ou mendigo, que regras criaria?</p><h3>A Sociedade Emerge</h3><p>Milagrosamente, todos concordam em: educação universal, saúde acessível, redes de segurança. Por quê? <strong>Porque agora o mendigo pode ser você</strong>.</p><blockquote>\"Empatia forçada pela ignorância revela nosso egoísmo original.\"</blockquote><ul><li>Quando não sabemos nossa posição, queremos justiça</li><li>Quando sabemos que estamos no topo, queremos manter</li></ul><p>Ao final, o véu cai. Um bilionário descobre que será sem-teto na nova sociedade. Ele tenta mudar as regras, mas tarde demais. A experiência prova: <em>justiça verdadeira só existe quando ninguém está seguro de sua vantagem.</em></p>",
+    "imageUrl": "https://placehold.co/600x400/E74C3C/ffffff?text=Veu"
+  },
+  {
+    "title": "O Oráculo Quebrado",
+    "tag": "Temporalidade",
+    "tagColor": "bg-rose-600 text-white",
+    "content": "<h2>Profecias Autorrealizáveis</h2><p>Um oráculo prevê catástrofes com 100% de precisão. Mas quanto mais acreditam nele, mais suas profecias se tornam <strong>causas</strong> dos eventos que prediz.</p><p>Ele prevê guerra. Nações se armam preventivamente. A corrida armamentista causa... a guerra. A profecia criou sua própria realidade.</p><h3>O Paradoxo Temporal</h3><p>Édipo tentou escapar do destino e correu direto para ele. A oráculo percebe: <em>conhecimento do futuro muda o presente, que muda o futuro conhecido</em>. É um loop impossível.</p><blockquote>\"Quanto mais tentamos controlar o futuro, mais o criamos.\"</blockquote><p>Desesperado, ele para de profetizar. Mas as pessoas, viciadas em certeza, inventam suas próprias profecias. Descoberta terrível: <strong>não precisamos de oráculos; criamos nossos destinos ao tentar prevê-los.</strong></p><p>O tempo não é linha — é rede. Cada ponto de observação altera toda a estrutura. O oráculo se quebra quando percebe que sempre foi apenas um espelho.</p>",
+    "imageUrl": "https://placehold.co/600x400/AD1457/ffffff?text=Oraculo"
+  },
+  {
+    "title": "O Cérebro na Cuba",
+    "tag": "Platonismo",
+    "tagColor": "bg-amber-600 text-white",
+    "content": "<h2>Realidade ou Simulação?</h2><p>Uma neurocientista acorda em um laboratório. Um cientista explica: <em>\"Você é um cérebro em uma cuba. Tudo que viveu foi estímulo elétrico. Sua vida inteira foi simulação.\"</em></p><p>Ela ri, acha impossível. Mas então questiona: <strong>como provar que não é?</strong> Cada argumento que usa — memórias, sensações, lógica — pode ser simulado.</p><h3>Matrix Filosófico</h3><p>Descartes duvidou de tudo exceto que duvidava. Mas se seu cérebro está sendo estimulado a duvidar... até pensamento é suspeito.</p><ul><li>Se a simulação é perfeita, há diferença de realidade?</li><li>Amor simulado é menos real que amor 'real'?</li></ul><blockquote>\"Se não podemos escapar da cuba, devemos aprender a amá-la.\"</blockquote><p>Plot twist: o cientista também é simulação. Todos são. A questão não é <em>se</em> somos cérebros em cubas, mas <em>importa</em>? Se a experiência é indistinguível, a distinção é irrelevante.</p><p>Ela decide viver como se fosse real. Porque mesmo simulações podem sofrer e amar. E isso, paradoxalmente, as torna reais.</p>",
+    "imageUrl": "https://placehold.co/600x400/F39C12/ffffff?text=Cerebro"
   }
 ]
