@@ -106,9 +106,33 @@ export const apiClient = {
 
       return response.json();
     } catch (error) {
-      console.error(`[API PATCH] Erro em ${url}:`, error);
+      console.error(`[API PUT] Erro em ${url}:`, error);
       throw error;
     }
   },
-  
+
+  async delete<T>(endpoint: string, body: any): Promise<T> {
+    const cleanEndpoint = endpoint.startsWith('/') ? endpoint : `/${endpoint}`;
+    const url = `${API_BASE_URL}${cleanEndpoint}`;
+
+    try {
+      const response = await fetch(url, {
+        method: 'DELETE',
+        headers: apiClient.getHeaders(),
+        body: JSON.stringify(body),
+      });
+
+      if (!response.ok) {
+        const errorBody = await response.json().catch(() => ({}));
+        throw new Error(errorBody.message || `Erro na API (${response.status})`);
+      }
+
+      // DELETE requests might not have a body, so we handle that case.
+      const text = await response.text();
+      return text ? JSON.parse(text) : ({} as T);
+    } catch (error) {
+      console.error(`[API DELETE] Erro em ${url}:`, error);
+      throw error;
+    }
+  },
 };

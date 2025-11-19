@@ -4,22 +4,31 @@ import { Input } from "../components/ui/input";
 import { Button } from "../components/ui/button";
 import { Card, CardContent, CardHeader, CardTitle } from "../components/ui/card";
 import { Badge } from "../components/ui/badge";
-import { Search } from "lucide-react";
+import { Bookmark, Search } from "lucide-react";
 import { StoryService, Story } from "@/api/stories";
 import { Skeleton } from "../components/ui/skeleton";
+import { useAuth } from "@/context/AuthContext";
 
 const ExplorePage: React.FC = () => {
+  const { user } = useAuth();
   const [tags, setTags] = useState<string[]>([]);
   const [stories, setStories] = useState<Story[]>([]);
+  const [savedStories, setSavedStories] = useState<number[]>([]);
   const [loading, setLoading] = useState(true);
   const [searchTerm, setSearchTerm] = useState("");
 
   useEffect(() => {
-    const fetchStories = async () => {
+    const fetchInitialData = async () => {
       try {
-        const data = await StoryService.getAll();
-        setStories(data);
-        const uniqueTags = Array.from(new Set(data.map(story => story.tag)));
+        const [storiesData, savedStoriesData] = await Promise.all([
+          StoryService.getAll(),
+          user ? StoryService.getSavedStories(user.id) : Promise.resolve([]),
+        ]);
+
+        setStories(storiesData);
+        setSavedStories(savedStoriesData.map(s => s.id));
+
+        const uniqueTags = Array.from(new Set(storiesData.map(story => story.tag)));
         setTags(uniqueTags);
       } catch (error) {
         console.error("Erro ao carregar histórias:", error);
@@ -28,8 +37,28 @@ const ExplorePage: React.FC = () => {
       }
     };
 
-    fetchStories();
-  }, []);
+    fetchInitialData();
+  }, [user]);
+
+  const handleSaveStory = async (storyId: number) => {
+    if (!user) return;
+    try {
+      await StoryService.saveStory(user.id, storyId);
+      setSavedStories([...savedStories, storyId]);
+    } catch (error) {
+      console.error("Erro ao salvar história:", error);
+    }
+  };
+
+  const handleRemoveStory = async (storyId: number) => {
+    if (!user) return;
+    try {
+      await StoryService.removeSavedStory(user.id, storyId);
+      setSavedStories(savedStories.filter(id => id !== storyId));
+    } catch (error) {
+      console.error("Erro ao remover história:", error);
+    }
+  };
 
   const filteredStories = stories.filter(
     story => story.title.toLowerCase().includes(searchTerm.toLowerCase()) || story.tag.toLowerCase().includes(searchTerm.toLowerCase()),
@@ -95,10 +124,18 @@ const ExplorePage: React.FC = () => {
                 <CardHeader>
                   <CardTitle className="font-serif text-2xl leading-snug">{story.title}</CardTitle>
                 </CardHeader>
-                <CardContent className="mt-auto">
-                  <Badge className={`font-sans text-sm px-4 py-1 rounded-full shadow-sm ${story.tagColor}`}>{story.tag}</Badge>
-                </CardContent>
               </Link>
+              <CardContent className="mt-auto flex justify-between items-center">
+                <Badge className={`font-sans text-sm px-4 py-1 rounded-full shadow-sm ${story.tagColor}`}>{story.tag}</Badge>
+                {user && (
+                  <Button
+                    variant="ghost"
+                    size="icon"
+                    onClick={() => (savedStories.includes(story.id) ? handleRemoveStory(story.id) : handleSaveStory(story.id))}>
+                    <Bookmark className={savedStories.includes(story.id) ? "text-verde fill-current" : "text-gray-400"} />
+                  </Button>
+                )}
+              </CardContent>
             </Card>
           ))}
 

@@ -1,0 +1,23 @@
+meta {
+  name: save story
+  type: http
+  seq: 4
+}
+
+post {
+  url: http://localhost:8000/stories/favs
+  body: json
+  auth: inherit
+}
+
+body:json {
+  {
+    "userID": 1,
+    "storyID": 1
+  }
+}
+
+settings {
+  encodeUrl: true
+  timeout: 0
+}

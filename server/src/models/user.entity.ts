@@ -8,20 +8,13 @@ import {
   type HasManyGetAssociationsMixin,
   type HasManyAddAssociationMixin,
 } from "sequelize";
-import type { Bookmark } from "./bookmark.entity";
 
-export class User extends Model<
-  InferAttributes<User>,
-  InferCreationAttributes<User>
-> {
+export class User extends Model<InferAttributes<User>, InferCreationAttributes<User>> {
   declare id: CreationOptional<number>;
   declare name: string;
   declare email: string;
   declare password: string;
   declare avatarUrl: CreationOptional<string | null>;
-
-  declare getBookmarks: HasManyGetAssociationsMixin<Bookmark>;
-  declare addBookmark: HasManyAddAssociationMixin<Bookmark, number>;
 
   static initModel(sequelize: Sequelize) {
     User.init(

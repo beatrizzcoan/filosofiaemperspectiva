@@ -6,19 +6,21 @@ import {
   Bookmark,
   Share2,
   Clock,
-  AlertCircle,
   BookOpen,
 } from "lucide-react";
 import { Button } from "../components/ui/button";
 import { Separator } from "../components/ui/separator";
 import { Badge } from "../components/ui/badge";
 import { Skeleton } from "../components/ui/skeleton";
-import { Alert, AlertDescription, AlertTitle } from "../components/ui/alert";
 import { StoryService, Story } from "../api/stories";
+import { useAuth } from "@/context/AuthContext";
 
 const ReadingPage: React.FC = () => {
-  const { storyId } = useParams();
+  const { storyId } = useParams<{ storyId: string }>();
+  const { user } = useAuth();
+
   const [story, setStory] = useState<Story | null>(null);
+  const [isSaved, setIsSaved] = useState(false);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState<string | null>(null);
 
@@ -27,7 +29,7 @@ const ReadingPage: React.FC = () => {
 
     const fetchStory = async () => {
       if (!storyId) {
-        setLoading(false);
+        if (isMounted) setLoading(false);
         return;
       }
 
@@ -35,9 +37,16 @@ const ReadingPage: React.FC = () => {
       setError(null);
 
       try {
-        const data = await StoryService.getById(storyId);
+        const storyData = await StoryService.getById(storyId);
         if (isMounted) {
-          setStory(data);
+          setStory(storyData);
+        }
+
+        if (user && isMounted) {
+          const savedStories = await StoryService.getSavedStories(user.id);
+          if (savedStories.some(s => s.id === storyData.id)) {
+            setIsSaved(true);
+          }
         }
       } catch (err) {
         console.error("Erro ao buscar história:", err);
@@ -58,7 +67,24 @@ const ReadingPage: React.FC = () => {
     return () => {
       isMounted = false;
     };
-  }, [storyId]);
+  }, [storyId, user]);
+
+  const handleToggleSave = async () => {
+    if (!user || !story) return;
+
+    try {
+      if (isSaved) {
+        await StoryService.removeSavedStory(user.id, story.id);
+        setIsSaved(false);
+      } else {
+        await StoryService.saveStory(user.id, story.id);
+        setIsSaved(true);
+      }
+    } catch (error) {
+      console.error("Erro ao atualizar o status da história:", error);
+      // Opcional: Adicionar um toast/notificação de erro para o usuário
+    }
+  };
 
   // Estado de Carregamento (Feedback Visual)
   if (loading) {
@@ -188,14 +214,21 @@ const ReadingPage: React.FC = () => {
             </div>
 
             <div className="flex items-center gap-3">
-              <Button
-                variant="outline"
-                size="icon"
-                className="h-12 w-12 rounded-full border-gray-300 bg-white hover:border-verde hover:text-verde hover:bg-verde/5 transition-all shadow-sm"
-                title="Salvar História"
-              >
-                <Bookmark className="h-5 w-5" />
-              </Button>
+              {user && (
+                <Button
+                  variant="outline"
+                  size="icon"
+                  className="h-12 w-12 rounded-full border-gray-300 bg-white hover:border-verde hover:text-verde hover:bg-verde/5 transition-all shadow-sm"
+                  title={isSaved ? "Remover História" : "Salvar História"}
+                  onClick={handleToggleSave}
+                >
+                  <Bookmark
+                    className={`h-5 w-5 transition-colors ${
+                      isSaved ? "text-verde fill-current" : "text-gray-400"
+                    }`}
+                  />
+                </Button>
+              )}
               <Button
                 variant="outline"
                 size="icon"

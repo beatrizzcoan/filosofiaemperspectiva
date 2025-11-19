@@ -1,24 +1,25 @@
 import { Sequelize } from "sequelize";
 import { User } from "./user.entity";
 import { Story } from "./story.entity";
-import { Bookmark } from "./bookmark.entity";
+import { SavedStory } from "./saved-story.entity";
 
-export { User, Story, Bookmark };
+export { User, Story, SavedStory };
 
 export function initModels(sequelize: Sequelize) {
   User.initModel(sequelize);
   Story.initModel(sequelize);
-  Bookmark.initModel(sequelize);
 
-  User.hasMany(Bookmark, { foreignKey: "userId" });
-  Bookmark.belongsTo(User, { foreignKey: "userId" });
+  SavedStory.initModel(sequelize);
+  SavedStory.associate({ Story, User });
 
-  Story.hasMany(Bookmark, { foreignKey: "storyId" });
-  Bookmark.belongsTo(Story, { foreignKey: "storyId" });
+  User.hasMany(SavedStory, { foreignKey: "userId" });
+  SavedStory.belongsTo(User, { foreignKey: "userId" });
+
+  Story.hasMany(SavedStory, { foreignKey: "storyId" });
+  SavedStory.belongsTo(Story, { foreignKey: "storyId" });
 
   return {
     User,
     Story,
-    Bookmark,
   };
 }
