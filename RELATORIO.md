@@ -121,7 +121,7 @@ A API segue o padrão REST e utiliza JSON para comunicação. Autenticação via
 ### Documentação OpenAPI 3.0 (Swagger)
 Para garantir a interoperabilidade e facilitar o consumo da API, a especificação foi formalizada utilizando o padrão OpenAPI 3.0 no arquivo `swagger.yaml`. O contrato da interface descreve os esquemas de dados (User, Story), os métodos de autenticação (Bearer JWT) e as respostas HTTP padronizadas.
 
-A visualização desta documentação pode ser feita através do Swagger Editor colando o conteúdo YAML.
+A visualização desta documentação pode ser feita através do Swagger Editor colando o conteúdo YAML e também pelo endpoint `/api-docs` da aplicação.
 
 ---
 
