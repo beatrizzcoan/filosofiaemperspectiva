@@ -6,6 +6,9 @@ import cors from "cors";
 import userRoutes from "./routes/auth.routes";
 import { seedDatabase } from "./db/seeder";
 import storyRoutes from "./routes/story.routes";
+import yaml from "yamljs";
+import path from "path";
+import swaggerUi from "swagger-ui-express";
 dotenv.config();
 
 const app = express();
@@ -41,6 +44,9 @@ async function start() {
 
     app.use("/auth", userRoutes);
     app.use("/stories", storyRoutes);
+
+    const swaggerDocument = yaml.load(path.join(__dirname, "../swagger.yaml"));
+    app.use("/api-docs", swaggerUi.serve, swaggerUi.setup(swaggerDocument));
 
     app.listen(PORT, "0.0.0.0", () => {
       console.log(`server is listening on http://localhost:${PORT}`);

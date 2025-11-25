@@ -1,0 +1,181 @@
+openapi: 3.0.0
+info:
+  title: API Filosofia em Perspectiva
+  description: API para gerenciamento de usuários, acesso a histórias filosóficas e sistema de favoritos.
+  version: 1.1.0
+servers:
+  - url: http://localhost:8000
+    description: Servidor Local
+components:
+  securitySchemes:
+    bearerAuth:
+      type: http
+      scheme: bearer
+      bearerFormat: JWT
+  schemas:
+    User:
+      type: object
+      properties:
+        id:
+          type: integer
+          example: 1
+        name:
+          type: string
+          example: "Ana Silva"
+        email:
+          type: string
+          format: email
+    Story:
+      type: object
+      properties:
+        id:
+          type: integer
+          example: 10
+        title:
+          type: string
+          example: "O Mito da Caverna"
+        tag:
+          type: string
+          example: "Platão"
+        imageUrl:
+          type: string
+        content:
+          type: string
+    BookmarkInput:
+      type: object
+      required:
+        - userId
+        - storyId
+      properties:
+        userId:
+          type: integer
+          description: ID do usuário que está salvando
+        storyId:
+          type: integer
+          description: ID da história a ser salva
+
+paths:
+  /auth/register:
+    post:
+      tags: [Auth]
+      summary: Registrar novo usuário
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type: object
+              required: [name, email, password]
+              properties:
+                name: {type: string}
+                email: {type: string}
+                password: {type: string}
+      responses:
+        '201':
+          description: Criado com sucesso
+
+  /auth/login:
+    post:
+      tags: [Auth]
+      summary: Autenticação
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type: object
+              required: [email, password]
+              properties:
+                email: {type: string}
+                password: {type: string}
+      responses:
+        '200':
+          description: Sucesso
+
+  /auth/me:
+    get:
+      tags: [Auth]
+      security: [{bearerAuth: []}]
+      summary: Perfil do usuário
+      responses: { '200': { description: OK } }
+    patch:
+      tags: [Auth]
+      security: [{bearerAuth: []}]
+      summary: Atualizar perfil
+      responses: { '200': { description: OK } }
+
+  /auth/change-password:
+    put:
+      tags: [Auth]
+      summary: Alterar senha
+      responses: { '200': { description: OK } }
+
+  /stories:
+    get:
+      tags: [Stories]
+      summary: Listar todas as histórias
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                type: array
+                items: { $ref: '#/components/schemas/Story' }
+
+  /stories/{id}:
+    get:
+      tags: [Stories]
+      summary: Obter história por ID
+      parameters:
+        - name: id
+          in: path
+          required: true
+          schema: { type: integer }
+      responses:
+        '200':
+          content:
+            application/json:
+              schema: { $ref: '#/components/schemas/Story' }
+
+  /stories/favs/{userID}:
+    get:
+      tags: [Stories]
+      summary: Listar histórias favoritas de um usuário
+      parameters:
+        - name: userID
+          in: path
+          required: true
+          schema: { type: integer }
+          description: ID do usuário para buscar os favoritos
+      responses:
+        '200':
+          description: Lista de histórias favoritadas
+          content:
+            application/json:
+              schema:
+                type: array
+                items: { $ref: '#/components/schemas/Story' }
+
+  /stories/favs:
+    post:
+      tags: [Stories]
+      summary: Salvar história (Favoritar)
+      security: [{bearerAuth: []}]
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema: { $ref: '#/components/schemas/BookmarkInput' }
+      responses:
+        '201':
+          description: História salva com sucesso
+    delete:
+      tags: [Stories]
+      summary: Remover favorito
+      security: [{bearerAuth: []}]
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema: { $ref: '#/components/schemas/BookmarkInput' }
+      responses:
+        '200':
+          description: Removido dos favoritos com sucesso
