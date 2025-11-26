@@ -37,7 +37,7 @@ async function start() {
     await sequelize.authenticate();
     console.log("db connection established");
 
-    await sequelize.sync({ alter: false });
+    await sequelize.sync({ alter: true });
     console.log("models synchronized");
 
     await seedDatabase();
