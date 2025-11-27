@@ -126,7 +126,7 @@ const ExplorePage: React.FC = () => {
                 </CardHeader>
               </Link>
               <CardContent className="mt-auto flex justify-between items-center">
-                <Badge className={`font-sans text-sm px-4 py-1 rounded-full shadow-sm ${story.tagColor}`}>{story.tag}</Badge>
+                <Badge className="text-gray-500 bg-gray-50 font-sans text-sm px-4 py-1 rounded-full shadow-sm">{story.tag}</Badge>
                 {user && (
                   <Button
                     variant="ghost"
