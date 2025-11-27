@@ -20,7 +20,7 @@ const ProfilePage: React.FC = () => {
   const [isLoading, setIsLoading] = useState(false);
 
   const [name, setName] = useState(user?.name || "");
-  const [avatarUrl, setAvatarUrl] = useState(user?.avatarUrl || "");
+  const [avatarFile, setAvatarFile] = useState<File | null>(null);
   const [oldPassword, setOldPassword] = useState("");
   const [newPassword, setNewPassword] = useState("");
   const [savedStories, setSavedStories] = useState<Story[]>([]);
@@ -43,7 +43,7 @@ const ProfilePage: React.FC = () => {
   useEffect(() => {
     if (isEditing && user) {
       setName(user.name);
-      setAvatarUrl(user.avatarUrl || "");
+      setAvatarFile(null);
       setOldPassword("");
       setNewPassword("");
     }
@@ -52,8 +52,15 @@ const ProfilePage: React.FC = () => {
   const handleUpdateProfile = async (e: React.FormEvent) => {
     e.preventDefault();
     setIsLoading(true);
+
+    const formData = new FormData();
+    formData.append("name", name);
+    if (avatarFile) {
+      formData.append("profile_picture", avatarFile);
+    }
+
     try {
-      const updatedUser = await AuthService.updateProfile({ name, avatarUrl });
+      const updatedUser = await AuthService.updateProfile(formData);
       updateUser(updatedUser);
       setIsEditing(false);
       toast.success("Perfil atualizado com sucesso!");
@@ -101,7 +108,7 @@ const ProfilePage: React.FC = () => {
       <Card className="bg-white p-6 md:p-8 mb-10 shadow-xl border-0">
         <div className="flex flex-col md:flex-row items-center gap-6">
           <Avatar className="w-28 h-28 border-4 border-gray-200 shadow-sm">
-            <AvatarImage src={user.avatarUrl || ""} alt={user.name} className="object-cover" />
+            <AvatarImage src={user.avatarUrl ? `http://localhost:8000/${user.avatarUrl}` : ""} alt={user.name} className="object-cover" />
             <AvatarFallback className="text-4xl bg-gray-200 text-gray-500">{user.name.charAt(0).toUpperCase()}</AvatarFallback>
           </Avatar>
 
@@ -142,9 +149,14 @@ const ProfilePage: React.FC = () => {
                       </div>
                     </div>
                     <div className="space-y-2">
-                      <Label htmlFor="avatar">URL do Avatar (Imagem)</Label>
-                      <Input id="avatar" value={avatarUrl} onChange={e => setAvatarUrl(e.target.value)} placeholder="https://exemplo.com/foto.jpg" />
-                      <p className="text-xs text-gray-500">Cole um link direto de uma imagem (ex: Imgur, LinkedIn).</p>
+                      <Label htmlFor="avatar">Foto de Perfil</Label>
+                      <Input
+                        id="avatar"
+                        type="file"
+                        onChange={e => setAvatarFile(e.target.files ? e.target.files[0] : null)}
+                        className="file:mr-4 file:py-2 file:px-4 file:rounded-full file:border-0 file:text-sm file:font-semibold file:bg-verde/20 file:text-verde-dark hover:file:bg-verde/30 file:leading-none"
+                      />
+                      <p className="text-xs text-gray-500">Selecione uma imagem para seu novo avatar.</p>
                     </div>
                     <div className="flex justify-end mt-4">
                       <Button type="submit" className="bg-verde text-gray-900 hover:bg-verde/90" disabled={isLoading}>

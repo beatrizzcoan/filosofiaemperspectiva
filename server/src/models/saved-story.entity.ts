@@ -1,6 +1,16 @@
-import { DataTypes, Model, type CreationOptional, type InferAttributes, type InferCreationAttributes, type Sequelize } from "sequelize";
+import {
+  DataTypes,
+  Model,
+  type CreationOptional,
+  type InferAttributes,
+  type InferCreationAttributes,
+  type Sequelize,
+} from "sequelize";
 
-export class SavedStory extends Model<InferAttributes<SavedStory>, InferCreationAttributes<SavedStory>> {
+export class SavedStory extends Model<
+  InferAttributes<SavedStory>,
+  InferCreationAttributes<SavedStory>
+> {
   declare id: CreationOptional<number>;
   declare storyID: CreationOptional<number>;
   declare userID: CreationOptional<number>;

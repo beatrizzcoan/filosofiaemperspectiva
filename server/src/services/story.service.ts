@@ -39,9 +39,15 @@ export class StoryService {
   }
 
   static async removeSavedStory(userID: number, storyID: number) {
-    const exists = await SavedStoryRepository.isStorySavedByUser(userID, storyID);
+    const exists = await SavedStoryRepository.isStorySavedByUser(
+      userID,
+      storyID,
+    );
     if (!exists) {
-      throw new ApiError(404, "História salva não encontrada para este usuário");
+      throw new ApiError(
+        404,
+        "História salva não encontrada para este usuário",
+      );
     }
 
     return SavedStoryRepository.removeSavedStory(userID, storyID);

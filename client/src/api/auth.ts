@@ -1,4 +1,4 @@
-import { apiClient } from './client';
+import { apiClient } from "./client";
 
 export interface User {
   id: number;
@@ -13,22 +13,22 @@ export interface LoginResponse {
 
 export const AuthService = {
   async login(email: string, password: string): Promise<LoginResponse> {
-    return apiClient.post<LoginResponse>('/auth/login', { email, password });
+    return apiClient.post<LoginResponse>("/auth/login", { email, password });
   },
 
   async register(name: string, email: string, password: string): Promise<User> {
-    return apiClient.post<User>('/auth/register', { name, email, password });
+    return apiClient.post<User>("/auth/register", { name, email, password });
   },
 
   async getMe(): Promise<User> {
-    return apiClient.get<User>('/auth/me');
+    return apiClient.get<User>("/auth/me");
   },
 
-  async updateProfile(data: { name?: string; avatarUrl?: string }): Promise<User> {
-    return apiClient.patch<User>('/auth/me', data);
+  async updateProfile(data: FormData): Promise<User> {
+    return apiClient.patch<User>("/auth/me", data);
   },
 
   async changePassword(oldPassword: string, newPassword: string): Promise<{ message: string }> {
-    return apiClient.put<{ message: string }>('/auth/change-password', { oldPassword, newPassword });
-  }
+    return apiClient.put<{ message: string }>("/auth/change-password", { oldPassword, newPassword });
+  },
 };

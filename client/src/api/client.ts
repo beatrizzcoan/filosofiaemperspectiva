@@ -1,32 +1,34 @@
 const getBaseUrl = (): string => {
   let envUrl = import.meta.env.VITE_BACKEND_HOST;
   if (envUrl) {
-    return envUrl.endsWith('/') ? envUrl.slice(0, -1) : envUrl;
+    return envUrl.endsWith("/") ? envUrl.slice(0, -1) : envUrl;
   }
-  return 'http://localhost:8000';
+  return "http://localhost:8000";
 };
 
 export const API_BASE_URL = getBaseUrl();
 
 export const apiClient = {
-  getHeaders() {
-    const headers: HeadersInit = {
-      'Content-Type': 'application/json',
-    };
-    const token = localStorage.getItem('auth_token');
+  getHeaders(isFormData: boolean = false) {
+    const headers: HeadersInit = {};
+    if (!isFormData) {
+      headers["Content-Type"] = "application/json";
+    }
+
+    const token = localStorage.getItem("auth_token");
     if (token) {
-      headers['Authorization'] = `Bearer ${token}`;
+      headers["Authorization"] = `Bearer ${token}`;
     }
     return headers;
   },
 
   async get<T>(endpoint: string): Promise<T> {
-    const cleanEndpoint = endpoint.startsWith('/') ? endpoint : `/${endpoint}`;
+    const cleanEndpoint = endpoint.startsWith("/") ? endpoint : `/${endpoint}`;
     const url = `${API_BASE_URL}${cleanEndpoint}`;
 
     try {
       const response = await fetch(url, {
-        method: 'GET',
+        method: "GET",
         headers: apiClient.getHeaders(),
       });
 
@@ -43,12 +45,12 @@ export const apiClient = {
   },
 
   async post<T>(endpoint: string, body: any): Promise<T> {
-    const cleanEndpoint = endpoint.startsWith('/') ? endpoint : `/${endpoint}`;
+    const cleanEndpoint = endpoint.startsWith("/") ? endpoint : `/${endpoint}`;
     const url = `${API_BASE_URL}${cleanEndpoint}`;
 
     try {
       const response = await fetch(url, {
-        method: 'POST',
+        method: "POST",
         headers: apiClient.getHeaders(),
         body: JSON.stringify(body),
       });
@@ -66,14 +68,15 @@ export const apiClient = {
   },
 
   async patch<T>(endpoint: string, body: any): Promise<T> {
-    const cleanEndpoint = endpoint.startsWith('/') ? endpoint : `/${endpoint}`;
+    const cleanEndpoint = endpoint.startsWith("/") ? endpoint : `/${endpoint}`;
     const url = `${API_BASE_URL}${cleanEndpoint}`;
+    const isFormData = body instanceof FormData;
 
     try {
       const response = await fetch(url, {
-        method: 'PATCH',
-        headers: apiClient.getHeaders(),
-        body: JSON.stringify(body),
+        method: "PATCH",
+        headers: apiClient.getHeaders(isFormData),
+        body: isFormData ? body : JSON.stringify(body),
       });
 
       if (!response.ok) {
@@ -89,12 +92,12 @@ export const apiClient = {
   },
 
   async put<T>(endpoint: string, body: any): Promise<T> {
-    const cleanEndpoint = endpoint.startsWith('/') ? endpoint : `/${endpoint}`;
+    const cleanEndpoint = endpoint.startsWith("/") ? endpoint : `/${endpoint}`;
     const url = `${API_BASE_URL}${cleanEndpoint}`;
 
     try {
       const response = await fetch(url, {
-        method: 'PUT',
+        method: "PUT",
         headers: apiClient.getHeaders(),
         body: JSON.stringify(body),
       });
@@ -112,12 +115,12 @@ export const apiClient = {
   },
 
   async delete<T>(endpoint: string, body: any): Promise<T> {
-    const cleanEndpoint = endpoint.startsWith('/') ? endpoint : `/${endpoint}`;
+    const cleanEndpoint = endpoint.startsWith("/") ? endpoint : `/${endpoint}`;
     const url = `${API_BASE_URL}${cleanEndpoint}`;
 
     try {
       const response = await fetch(url, {
-        method: 'DELETE',
+        method: "DELETE",
         headers: apiClient.getHeaders(),
         body: JSON.stringify(body),
       });

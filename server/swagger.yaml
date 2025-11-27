@@ -66,11 +66,11 @@ paths:
               type: object
               required: [name, email, password]
               properties:
-                name: {type: string}
-                email: {type: string}
-                password: {type: string}
+                name: { type: string }
+                email: { type: string }
+                password: { type: string }
       responses:
-        '201':
+        "201":
           description: Criado com sucesso
 
   /auth/login:
@@ -84,41 +84,41 @@ paths:
               type: object
               required: [email, password]
               properties:
-                email: {type: string}
-                password: {type: string}
+                email: { type: string }
+                password: { type: string }
       responses:
-        '200':
+        "200":
           description: Sucesso
 
   /auth/me:
     get:
       tags: [Auth]
-      security: [{bearerAuth: []}]
+      security: [{ bearerAuth: [] }]
       summary: Perfil do usuário
-      responses: { '200': { description: OK } }
+      responses: { "200": { description: OK } }
     patch:
       tags: [Auth]
-      security: [{bearerAuth: []}]
+      security: [{ bearerAuth: [] }]
       summary: Atualizar perfil
-      responses: { '200': { description: OK } }
+      responses: { "200": { description: OK } }
 
   /auth/change-password:
     put:
       tags: [Auth]
       summary: Alterar senha
-      responses: { '200': { description: OK } }
+      responses: { "200": { description: OK } }
 
   /stories:
     get:
       tags: [Stories]
       summary: Listar todas as histórias
       responses:
-        '200':
+        "200":
           content:
             application/json:
               schema:
                 type: array
-                items: { $ref: '#/components/schemas/Story' }
+                items: { $ref: "#/components/schemas/Story" }
 
   /stories/{id}:
     get:
@@ -130,10 +130,10 @@ paths:
           required: true
           schema: { type: integer }
       responses:
-        '200':
+        "200":
           content:
             application/json:
-              schema: { $ref: '#/components/schemas/Story' }
+              schema: { $ref: "#/components/schemas/Story" }
 
   /stories/favs/{userID}:
     get:
@@ -146,36 +146,36 @@ paths:
           schema: { type: integer }
           description: ID do usuário para buscar os favoritos
       responses:
-        '200':
+        "200":
           description: Lista de histórias favoritadas
           content:
             application/json:
               schema:
                 type: array
-                items: { $ref: '#/components/schemas/Story' }
+                items: { $ref: "#/components/schemas/Story" }
 
   /stories/favs:
     post:
       tags: [Stories]
       summary: Salvar história (Favoritar)
-      security: [{bearerAuth: []}]
+      security: [{ bearerAuth: [] }]
       requestBody:
         required: true
         content:
           application/json:
-            schema: { $ref: '#/components/schemas/BookmarkInput' }
+            schema: { $ref: "#/components/schemas/BookmarkInput" }
       responses:
-        '201':
+        "201":
           description: História salva com sucesso
     delete:
       tags: [Stories]
       summary: Remover favorito
-      security: [{bearerAuth: []}]
+      security: [{ bearerAuth: [] }]
       requestBody:
         required: true
         content:
           application/json:
-            schema: { $ref: '#/components/schemas/BookmarkInput' }
+            schema: { $ref: "#/components/schemas/BookmarkInput" }
       responses:
-        '200':
+        "200":
           description: Removido dos favoritos com sucesso

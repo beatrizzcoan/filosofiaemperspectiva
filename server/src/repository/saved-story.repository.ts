@@ -11,18 +11,33 @@ export class SavedStoryRepository {
     return SavedStory.create({ userID, storyID });
   }
 
-  static async removeSavedStory(userID: number, storyID: number): Promise<number> {
+  static async removeSavedStory(
+    userID: number,
+    storyID: number,
+  ): Promise<number> {
     return SavedStory.destroy({ where: { userID, storyID } });
   }
 
-  static async getSavedByUser(userID: number, options: FindOptions = {}): Promise<Story[]> {
+  static async getSavedByUser(
+    userID: number,
+    options: FindOptions = {},
+  ): Promise<Story[]> {
     const baseInclude = [{ model: Story, as: "story" }];
-    const include = options.include ? ([] as any).concat(baseInclude, options.include) : baseInclude;
-    const saved = await SavedStory.findAll({ where: { userID }, ...options, include });
-    return saved.map(s => (s as any).story).filter(Boolean) as Story[];
+    const include = options.include
+      ? ([] as any).concat(baseInclude, options.include)
+      : baseInclude;
+    const saved = await SavedStory.findAll({
+      where: { userID },
+      ...options,
+      include,
+    });
+    return saved.map((s) => (s as any).story).filter(Boolean) as Story[];
   }
 
-  static async isStorySavedByUser(userID: number, storyID: number): Promise<boolean> {
+  static async isStorySavedByUser(
+    userID: number,
+    storyID: number,
+  ): Promise<boolean> {
     const count = await SavedStory.count({ where: { userID, storyID } });
     return count > 0;
   }

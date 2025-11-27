@@ -3,7 +3,11 @@ import { StoryService } from "@/services/story.service";
 import { ApiError } from "@/common/errors/ApiError";
 
 export class StoryController {
-  static async getSavedStoriesByUser(req: Request, res: Response, next: NextFunction) {
+  static async getSavedStoriesByUser(
+    req: Request,
+    res: Response,
+    next: NextFunction,
+  ) {
     try {
       const { userID } = req.params;
 
@@ -26,18 +30,27 @@ export class StoryController {
         return res.status(400).json({ message: "IDs inválidos" });
       }
 
-      const savedStory = await StoryService.saveStory(Number(userID), Number(storyID));
+      const savedStory = await StoryService.saveStory(
+        Number(userID),
+        Number(storyID),
+      );
       res.status(201).json(savedStory);
     } catch (error) {
       if (error instanceof ApiError) {
-        return res.status(error.getStatusCode()).json({ message: error.getMessage() });
+        return res
+          .status(error.getStatusCode())
+          .json({ message: error.getMessage() });
       }
 
       next(error);
     }
   }
 
-  static async removeSavedStory(req: Request, res: Response, next: NextFunction) {
+  static async removeSavedStory(
+    req: Request,
+    res: Response,
+    next: NextFunction,
+  ) {
     try {
       const { userID, storyID } = req.body;
 
@@ -49,7 +62,9 @@ export class StoryController {
       res.status(204).send();
     } catch (error) {
       if (error instanceof ApiError) {
-        return res.status(error.getStatusCode()).json({ message: error.getMessage() });
+        return res
+          .status(error.getStatusCode())
+          .json({ message: error.getMessage() });
       }
       next(error);
     }
@@ -61,7 +76,9 @@ export class StoryController {
       res.json(stories);
     } catch (error) {
       if (error instanceof ApiError) {
-        return res.status(error.getStatusCode()).json({ message: error.getMessage() });
+        return res
+          .status(error.getStatusCode())
+          .json({ message: error.getMessage() });
       }
       next(error);
     }

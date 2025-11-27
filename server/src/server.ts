@@ -33,6 +33,7 @@ async function start() {
   try {
     initModels(sequelize);
     app.use(express.json());
+    app.use("/uploads", express.static(path.join(__dirname, "uploads")));
 
     await sequelize.authenticate();
     console.log("db connection established");

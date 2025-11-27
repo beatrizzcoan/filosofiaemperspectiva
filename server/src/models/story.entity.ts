@@ -9,7 +9,10 @@ import {
   type HasManyGetAssociationsMixin,
 } from "sequelize";
 
-export class Story extends Model<InferAttributes<Story>, InferCreationAttributes<Story>> {
+export class Story extends Model<
+  InferAttributes<Story>,
+  InferCreationAttributes<Story>
+> {
   declare id: CreationOptional<number>;
   declare title: string;
   declare tag: string;

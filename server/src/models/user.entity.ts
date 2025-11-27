@@ -9,7 +9,10 @@ import {
   type HasManyAddAssociationMixin,
 } from "sequelize";
 
-export class User extends Model<InferAttributes<User>, InferCreationAttributes<User>> {
+export class User extends Model<
+  InferAttributes<User>,
+  InferCreationAttributes<User>
+> {
   declare id: CreationOptional<number>;
   declare name: string;
   declare email: string;
