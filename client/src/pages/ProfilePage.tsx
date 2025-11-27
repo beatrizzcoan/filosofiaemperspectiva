@@ -72,6 +72,25 @@ const ProfilePage: React.FC = () => {
     }
   };
 
+  const handleRemoveAvatar = async () => {
+    setIsLoading(true);
+    const formData = new FormData();
+    formData.append("name", name);
+    formData.append("avatarUrl", ""); // Signal to remove avatar
+
+    try {
+      const updatedUser = await AuthService.updateProfile(formData);
+      updateUser(updatedUser);
+      setIsEditing(false);
+      toast.success("Foto de perfil removida com sucesso!");
+    } catch (error: any) {
+      console.error(error);
+      toast.error(error.message || "Erro ao remover a foto de perfil");
+    } finally {
+      setIsLoading(false);
+    }
+  };
+
   const handleChangePassword = async (e: React.FormEvent) => {
     e.preventDefault();
     setIsLoading(true);
@@ -157,6 +176,11 @@ const ProfilePage: React.FC = () => {
                         className="file:mr-4 file:py-2 file:px-4 file:rounded-full file:border-0 file:text-sm file:font-semibold file:bg-verde/20 file:text-verde-dark hover:file:bg-verde/30 file:leading-none"
                       />
                       <p className="text-xs text-gray-500">Selecione uma imagem para seu novo avatar.</p>
+                      {user.avatarUrl && (
+                        <Button type="button" variant="link" className="text-red-500 p-0 h-auto" onClick={handleRemoveAvatar} disabled={isLoading}>
+                          Remover foto
+                        </Button>
+                      )}
                     </div>
                     <div className="flex justify-end mt-4">
                       <Button type="submit" className="bg-verde text-gray-900 hover:bg-verde/90" disabled={isLoading}>

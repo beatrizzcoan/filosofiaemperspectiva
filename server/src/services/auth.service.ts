@@ -4,6 +4,8 @@ import { ApiError } from "@/common/errors/ApiError";
 import { AuthRepository } from "@/repository/auth.repository";
 import jwt from "jsonwebtoken";
 import { JWT_SECRET } from "@/server";
+import fs from "fs";
+import path from "path";
 
 export class UserService {
   static async createUser(name: string, email: string, password: string) {
@@ -49,19 +51,12 @@ export class UserService {
       throw new ApiError(401, "Credenciais inválidas");
     }
 
-    const jwtToken = jwt.sign(
-      { id: user.id, email: user.email, name: user.name },
-      JWT_SECRET,
-    );
+    const jwtToken = jwt.sign({ id: user.id, email: user.email, name: user.name }, JWT_SECRET);
 
     return jwtToken;
   }
 
-  static async changePassword(
-    email: string,
-    oldPassword: string,
-    newPassword: string,
-  ) {
+  static async changePassword(email: string, oldPassword: string, newPassword: string) {
     const user = await AuthRepository.findByEmail(email);
 
     if (!user) {
@@ -98,16 +93,28 @@ export class UserService {
     return userWithoutPassword;
   }
 
-  static async updateProfile(
-    userId: number,
-    data: { name?: string; avatarUrl?: string },
-  ) {
+  static async updateProfile(userId: number, data: { name?: string; avatarUrl?: string | null }) {
     if (data.name && data.name.length < 3) {
       throw new ApiError(400, "Nome deve ter pelo menos 3 caracteres");
     }
 
-    const user = await AuthRepository.update(userId, data);
-    const { password: _, ...userWithoutPassword } = user.toJSON();
+    const user = await AuthRepository.findById(userId);
+
+    if (!user) {
+      throw new ApiError(404, "Usuário não encontrado");
+    }
+
+    const oldAvatarUrl = user.avatarUrl;
+
+    if (data.avatarUrl !== undefined && oldAvatarUrl) {
+      const oldAvatarPath = path.join(__dirname, "..", oldAvatarUrl);
+      if (fs.existsSync(oldAvatarPath)) {
+        fs.unlinkSync(oldAvatarPath);
+      }
+    }
+
+    const updatedUser = await AuthRepository.update(userId, data);
+    const { password: _, ...userWithoutPassword } = updatedUser.toJSON();
     return userWithoutPassword;
   }
 

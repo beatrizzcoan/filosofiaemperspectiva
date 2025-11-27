@@ -100,9 +100,13 @@ export class AuthController {
       if (!userID) throw new ApiError(401, "Acesso não autorizado");
 
       const { name } = req.body;
-      const avatarUrl = req.file
-        ? `uploads/${req.file.filename}`
-        : req.body.avatarUrl;
+      let avatarUrl;
+
+      if (req.file) {
+        avatarUrl = `uploads/${req.file.filename}`;
+      } else if (req.body.avatarUrl === "") {
+        avatarUrl = null;
+      }
 
       const updatedUser = await UserService.updateProfile(userID, {
         name,
