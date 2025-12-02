@@ -1,12 +1,15 @@
 import React, { useEffect, useState } from "react";
 import { useParams, Link } from "react-router-dom";
-import { ArrowLeft, Send, Bookmark, Share2, Clock, BookOpen } from "lucide-react";
+import { ArrowLeft, Send, Bookmark, Share2, Clock, BookOpen, X } from "lucide-react";
 import { Button } from "../components/ui/button";
 import { Separator } from "../components/ui/separator";
 import { Badge } from "../components/ui/badge";
 import { Skeleton } from "../components/ui/skeleton";
 import { StoryService, Story } from "../api/stories";
 import { useAuth } from "@/context/AuthContext";
+import { toast } from "sonner";
+import { Dialog, DialogContent, DialogHeader, DialogTitle, DialogTrigger, DialogClose } from "@/components/ui/dialog";
+import { Textarea } from "@/components/ui/textarea";
 
 const ReadingPage: React.FC = () => {
   const { storyId } = useParams<{ storyId: string }>();
@@ -16,6 +19,7 @@ const ReadingPage: React.FC = () => {
   const [isSaved, setIsSaved] = useState(false);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState<string | null>(null);
+  const [isReflectDialogOpen, setReflectDialogOpen] = useState(false);
 
   useEffect(() => {
     let isMounted = true;
@@ -67,16 +71,30 @@ const ReadingPage: React.FC = () => {
       if (isSaved) {
         await StoryService.removeSavedStory(user.id, story.id);
         setIsSaved(false);
+        toast.success("História removida das suas guardadas.", {
+          position: "top-right",
+        });
       } else {
         await StoryService.saveStory(user.id, story.id);
         setIsSaved(true);
+        toast.success("História guardada para uma futura reflexão.", {
+          position: "top-right",
+        });
       }
     } catch (error) {
       console.error("Erro ao atualizar o status da história:", error);
-      // Opcional: Adicionar um toast/notificação de erro para o usuário
+      toast.error("Ocorreu um erro ao guardar a história. Tente novamente.", {
+        position: "top-right",
+      });
     }
   };
 
+  const handleShare = () => {
+    navigator.clipboard.writeText(window.location.href);
+    toast.success("Link da reflexão copiado para a área de transferência!", {
+      position: "top-right",
+    });
+  };
   // Estado de Carregamento (Feedback Visual)
   if (loading) {
     return (
@@ -201,13 +219,43 @@ const ReadingPage: React.FC = () => {
                 variant="outline"
                 size="icon"
                 className="h-12 w-12 rounded-full border-gray-300 bg-white hover:border-azul hover:text-azul hover:bg-azul/5 transition-all shadow-sm"
-                title="Compartilhar">
+                title="Compartilhar"
+                onClick={handleShare}>
                 <Share2 className="h-5 w-5" />
               </Button>
-              <Button className="h-12 bg-verde text-gray-900 hover:bg-verde/90 font-sans font-bold rounded-full px-8 shadow-md hover:shadow-lg hover:-translate-y-0.5 transition-all">
-                <Send className="mr-2 h-4 w-4" />
-                Refletir
-              </Button>
+              <Dialog open={isReflectDialogOpen} onOpenChange={setReflectDialogOpen}>
+                <DialogTrigger asChild>
+                  <Button className="h-12 bg-verde text-gray-900 hover:bg-verde/90 font-sans font-bold rounded-full px-8 shadow-md hover:shadow-lg hover:-translate-y-0.5 transition-all">
+                    <Send className="mr-2 h-4 w-4" />
+                    Refletir
+                  </Button>
+                </DialogTrigger>
+                <DialogContent className="max-w-lg bg-white rounded-2xl shadow-2xl">
+                  <DialogHeader>
+                    <DialogTitle className="font-serif text-2xl text-gray-900">Qual a sua reflexão?</DialogTitle>
+                    <DialogClose className="absolute top-4 right-4 text-gray-400 hover:text-gray-800">
+                      <X className="h-5 w-5" />
+                    </DialogClose>
+                  </DialogHeader>
+                  <div className="py-6">
+                    <Textarea
+                      placeholder="Escreva aqui os seus pensamentos, sentimentos ou uma pequena anotação sobre esta história..."
+                      className="min-h-[180px] text-base font-sans p-4 rounded-lg"
+                    />
+                  </div>
+                  <Button
+                    onClick={() => {
+                      setReflectDialogOpen(false);
+                      toast.success("Sua reflexão foi anotada em seu coração.", {
+                        position: "top-right",
+                      });
+                    }}
+                    className="w-full h-12 bg-verde text-gray-900 hover:bg-verde/90 font-sans font-bold rounded-full text-base"
+                  >
+                    Concluir Reflexão
+                  </Button>
+                </DialogContent>
+              </Dialog>
             </div>
           </section>
         </main>

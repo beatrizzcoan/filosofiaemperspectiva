@@ -1,11 +1,12 @@
 import { Routes, Route } from 'react-router-dom';
 import { AuthProvider } from '@/context/AuthContext';
 import { ProtectedRoute } from '@/components/ProtectedRoute';
+import { Toaster } from 'sonner';
 
-import Header from '@/components/Header'; 
-import HomePage from '@/pages/HomePage';  
-import ExplorePage from '@/pages/ExplorePage'; 
-import ProfilePage from '@/pages/ProfilePage'; 
+import Header from '@/components/Header';
+import HomePage from '@/pages/HomePage';
+import ExplorePage from '@/pages/ExplorePage';
+import ProfilePage from '@/pages/ProfilePage';
 import LoginPage from '@/pages/LoginPage';
 import RegisterPage from '@/pages/RegisterPage';
 import ReadingPage from '@/pages/ReadingPage';
@@ -13,6 +14,7 @@ import ReadingPage from '@/pages/ReadingPage';
 function App() {
   return (
     <AuthProvider>
+      <Toaster richColors />
       <div className="min-h-screen bg-bege">
         <Header />
         <main>
