@@ -35,11 +35,11 @@ services:
   client:
     build: ./client
     ports:
-      - "3000:3000"
+      - "80:3000"
     depends_on:
       - server
     environment:
-      - VITE_BACKEND_HOST=http://localhost:8000
+      - VITE_BACKEND_HOST=http://168.138.154.195:8000
 
   adminer:
     image: adminer
