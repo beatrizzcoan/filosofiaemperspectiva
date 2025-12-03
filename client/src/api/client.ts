@@ -1,5 +1,5 @@
 const getBaseUrl = (): string => {
-  let envUrl = import.meta.env.VITE_BACKEND_HOST;
+  const envUrl = (import.meta as any).env?.VITE_BACKEND_HOST;
   if (envUrl) {
     return envUrl.endsWith("/") ? envUrl.slice(0, -1) : envUrl;
   }
