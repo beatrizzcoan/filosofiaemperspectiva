@@ -4,6 +4,7 @@ import { ProtectedRoute } from '@/components/ProtectedRoute';
 import { Toaster } from 'sonner';
 
 import Header from '@/components/Header';
+import PrototypeNotice from '@/components/PrototypeNotice'; // Import the new component
 import HomePage from '@/pages/HomePage';
 import ExplorePage from '@/pages/ExplorePage';
 import ProfilePage from '@/pages/ProfilePage';
@@ -15,6 +16,7 @@ function App() {
   return (
     <AuthProvider>
       <Toaster richColors />
+      <PrototypeNotice /> {/* Render the component */}
       <div className="min-h-screen bg-bege">
         <Header />
         <main>

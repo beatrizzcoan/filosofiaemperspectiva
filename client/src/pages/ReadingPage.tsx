@@ -233,9 +233,7 @@ const ReadingPage: React.FC = () => {
                 <DialogContent className="max-w-lg bg-white rounded-2xl shadow-2xl">
                   <DialogHeader>
                     <DialogTitle className="font-serif text-2xl text-gray-900">Qual a sua reflexão?</DialogTitle>
-                    <DialogClose className="absolute top-4 right-4 text-gray-400 hover:text-gray-800">
-                      <X className="h-5 w-5" />
-                    </DialogClose>
+                    <DialogClose className="absolute top-4 right-4 text-gray-400 hover:text-gray-800"></DialogClose>
                   </DialogHeader>
                   <div className="py-6">
                     <Textarea
@@ -250,8 +248,7 @@ const ReadingPage: React.FC = () => {
                         position: "top-right",
                       });
                     }}
-                    className="w-full h-12 bg-verde text-gray-900 hover:bg-verde/90 font-sans font-bold rounded-full text-base"
-                  >
+                    className="w-full h-12 bg-verde text-gray-900 hover:bg-verde/90 font-sans font-bold rounded-full text-base">
                     Concluir Reflexão
                   </Button>
                 </DialogContent>
