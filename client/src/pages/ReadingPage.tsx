@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from "react";
 import { useParams, Link } from "react-router-dom";
-import { ArrowLeft, Send, Bookmark, Share2, Clock, BookOpen, X } from "lucide-react";
+import { ArrowLeft, Send, Bookmark, Share2, Clock, BookOpen } from "lucide-react";
 import { Button } from "../components/ui/button";
 import { Separator } from "../components/ui/separator";
 import { Badge } from "../components/ui/badge";
